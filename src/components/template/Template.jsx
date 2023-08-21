@@ -1,11 +1,11 @@
 import { Outlet } from "react-router"
-import Header from "./Header"
+import MyHeader from "./MyHeader"
 
 const Template = () => {
 
     return <div>
         {/*  마이헤더 */}
-        <Header></Header>
+        <MyHeader></MyHeader>
         <Outlet></Outlet>
 
     </div>

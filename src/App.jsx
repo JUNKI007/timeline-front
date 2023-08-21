@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import MyRoutes from './routes/MyRoutes';
+import {MyHeader} from './components/template/MyHeader';
+
 function App() {
   return (
     <div className="App">
-      <MyRoutes></MyRoutes>
+      <MyHeader></MyHeader>
     </div>
   );
 }

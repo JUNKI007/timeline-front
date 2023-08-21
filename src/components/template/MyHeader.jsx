@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
+
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
@@ -27,7 +28,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default Header = () => {
+export const MyHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -39,6 +40,7 @@ export default Header = () => {
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </a>
         </div>
+        
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -51,7 +53,9 @@ export default Header = () => {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
+            
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+              
               Product
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
