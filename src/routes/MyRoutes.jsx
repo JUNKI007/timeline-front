@@ -1,8 +1,10 @@
-import { Route, Routes, BrowserRouter } from "react-router"
+import { Route, Routes } from "react-router"
+import { BrowserRouter } from 'react-router-dom'
 import Template from "../components/template/Template"
-import Singup from "../components/auth/Signup"
+import SingUp from "../components/auth/SignUp"
 import Login from "../components/auth/Login"
 import { useState } from "react"
+import Main from "../components/main/Main"
 
 const MyRoutes = () => {
     const [me, setMe] = useState({
@@ -15,9 +17,10 @@ const MyRoutes = () => {
     return <BrowserRouter>
         <Routes>
             <Route path="/login" element={<Login></Login>} />
-            <Route path="/signup" element={<Singup></Singup>} />
+            <Route path="/signup" element={<SingUp></SingUp>} />
             <Route element={<Template></Template>}>
                 {/* 여기에 각자의 페이지가 들어가야함. (템플릿 적용할 페이지) */}
+                <Route path="/" element={<Main></Main>}></Route>
             </Route>
         </Routes>
     </BrowserRouter>

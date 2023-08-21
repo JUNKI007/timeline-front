@@ -40,7 +40,7 @@ export const MyHeader = () => {
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </a>
         </div>
-        
+
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -53,9 +53,9 @@ export const MyHeader = () => {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            
+
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              
+
               Product
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
@@ -204,3 +204,5 @@ export const MyHeader = () => {
     </header>
   )
 }
+
+export default MyHeader
