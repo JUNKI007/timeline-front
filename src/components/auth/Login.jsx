@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { apiNoToken } from '../../network/api'
-//import { useNavigate } from "react-router";
-
+import { useNavigate } from "react-router";
 export default function Login() {
-    //const nav = useNavigate();
-
+    const nav = useNavigate();
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -19,8 +17,9 @@ export default function Login() {
         e.preventDefault();
         try {
             const data = await apiNoToken('/api/v1/members/login', 'POST', user)
-            localStorage.setItem('token', data.token)
-            // nav('/')             로그인 되면 이동할 곳
+            localStorage.setItem('token', data.data)
+            console.log(localStorage.getItem('token'))
+            nav('/user')
         } catch (error) {
             console.log(error);;
         }
@@ -82,7 +81,7 @@ export default function Login() {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                Sign In
+                                Log In
                             </button>
                         </div>
                     </form>

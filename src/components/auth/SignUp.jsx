@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { apiNoToken } from '../../network/api'
+import { useNavigate } from "react-router";
+
 
 export default function Signup() {
+    const nav = useNavigate();
+
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -18,11 +22,12 @@ export default function Signup() {
         e.preventDefault();
         try {
             const data = await apiNoToken('/api/v1/members/signup', 'POST', user)
-            if (data.status === 201) {
-                alert('성공')
-            }
+            alert('성공')
+            console.log(data.status)
+            console.log(data)
+            nav('/login')
         } catch (error) {
-            console.log(error);
+            alert(error.response.data.message)
         }
     }
 
