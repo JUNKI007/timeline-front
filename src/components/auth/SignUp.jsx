@@ -3,7 +3,7 @@ import { apiNoToken } from '../../network/api'
 import { useNavigate } from "react-router";
 
 
-export default function Signup() {
+export default function SignUp() {
     const nav = useNavigate();
 
     const [user, setUser] = useState({
