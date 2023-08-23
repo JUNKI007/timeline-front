@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-
+import { configureStore } from '@reduxjs/toolkit';
+import likesReducer from '../feature/likeSlice';
 
 export default configureStore({
     reducer: {
-        // 각자의 feature/ ~~ 에다가 스토어에 저장해둘 리듀서 파일 넣어두기
+        likes: likesReducer 
     }
-})
+});

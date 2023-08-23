@@ -1,0 +1,36 @@
+.remote-controller {
+    position: fixed;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+
+    font-family: 'Mochiy Pop P one', sans-serif; // 폰트 적용
+  
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      button,
+      a {
+        padding: 5px 10px;
+        border: 1px solid #308efe;
+        background-color: #308efe;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+  
+        &:hover {
+          background-color: #2566d4;
+        }
+      }
+    }
+  }
+  

@@ -1,24 +1,25 @@
-import { Route, Routes } from "react-router"
-import { BrowserRouter } from "react-router-dom"
+
+import User from "../components/user/User"
+import MyPage from "../components/mypage/MyPage"
+import { Route, Routes, BrowserRouter } from "react-router-dom"
 import Template from "../components/template/Template"
 import Singup from "../components/auth/Signup"
 import Login from "../components/auth/Login"
-import User from "../components/user/User"
+import { useState } from "react"
+import 'boxicons/css/boxicons.min.css'
+import Main from "../components/main/Main"
 import MyHeader from "../components/template/MyHeader"
-import MyPage from "../components/mypage/MyPage"
-
-
 const MyRoutes = () => {
 
     return <BrowserRouter>
         <MyHeader></MyHeader>
         <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Singup />} />
             <Route path="/user" element={<User />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/login" element={<Login></Login>} />
+            <Route path="/signup" element={<Singup></Singup>} />
             <Route element={<Template></Template>}>
-                {/* 여기에 각자의 페이지가 들어가야함. (템플릿 적용할 페이지) */}
+                 <Route path='/' element={<Main/>}/>
             </Route>
         </Routes>
     </BrowserRouter>
