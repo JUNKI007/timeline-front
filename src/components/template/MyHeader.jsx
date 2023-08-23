@@ -61,7 +61,7 @@ function FriendIcon(props) {
     
     <svg xmlns="http://www.w3.org/2000/svg" 
     fill="none" v
-    iewBox="0 0 24 24" 
+    ViewBox="0 0 24 24" 
     strokeWidth={1.5} stroke="currentColor" 
     className="w-6 h-6"
     {...props}
@@ -127,7 +127,7 @@ export default MyHeader => {
         </Popover.Group>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
+        <a href="#" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
         Login
         </a>
         </div>

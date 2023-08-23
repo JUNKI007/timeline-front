@@ -56,3 +56,40 @@
       }
     }
 }
+
+.button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.like-button {
+  background-color: #1877f2;
+  color: white;
+}
+
+.like-button:hover {
+  background-color: #165dbb;
+}
+
+.comment-button {
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  margin-left: 10px;
+}
+
+.comment-button:hover {
+  background-color: #e4e6e9;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
