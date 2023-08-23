@@ -36,9 +36,10 @@ export default function User() {
                     setUser({
                         id: data.data.id,
                         email: data.data.email,
-                        nickname: data.data.nickName
+                        nickname: data.data.nickName,
+                        profilePath: data.data.profilePath
                     });
-                    console.log(data.data)
+                    console.log(data.data.profilePath)
                 }
             } catch (error) {
                 console.log(error);
@@ -46,7 +47,7 @@ export default function User() {
         }
     useEffect(() => {
         getData()
-    }, [])
+    }, [showModal])
 
     return (
         <>
@@ -55,16 +56,11 @@ export default function User() {
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <img
                             className="mx-auto h-10 w-auto"
-                            src={user.profilePath}
+                            src={`http://192.168.0.226:4000/${user.profilePath}`}
                             alt="Your Company"
                             onClick={() => setShowModal(true)}
                         />
-
-                        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                            Profile
-                        </h2>
                     </div>
-
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form className="space-y-6" onSubmit={onSubmitHandler}>
                             <div>

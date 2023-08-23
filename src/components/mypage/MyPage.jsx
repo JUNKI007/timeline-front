@@ -1,18 +1,19 @@
 import AwesomeSlider from "react-awesome-slider";
 import CoreStyles from 'react-awesome-slider/src/core/styles.scss';
 import AnimationStyles from 'react-awesome-slider/src/styled/fall-animation';
-
+import Data from "./Data";
 
 export default function MyPage() {
     return (
-        <AwesomeSlider
-            animation="fallAnimation"
-            cssModule={[CoreStyles, AnimationStyles]}
-        >
-            <div data-src="https://cdn.travie.com/news/photo/first/201710/img_19975_1.jpg" />
-            <div data-src="https://cdn.travie.com/news/photo/first/201710/img_19975_1.jpg" />
-            <div data-src="https://cdn.travie.com/news/photo/first/201710/img_19975_1.jpg" />
-        </AwesomeSlider>
+        <>
+            <div className="mx-auto mt-10 flex border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                <AwesomeSlider animation="fallAnimation" cssModule={[CoreStyles, AnimationStyles]}>
+                    {Data.map((data) => (
+                        <div data-src={data.img} />
+                    ))}
+                </AwesomeSlider>
+            </div>
+        </>
     )
 
 

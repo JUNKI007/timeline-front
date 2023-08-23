@@ -17,18 +17,16 @@ const Modal = ({ isvisible, onClose }) => {
 
 
     const handleChangeFile = (e) => {
-        setImgFile(e.target.files)
+
+        setImgFile(e.target.files[0])
     }
 
-    const WriteBoard = async () => {
+    const WriteBoard = () => {
         const fd = new FormData();
-        Object.values(imgFile).forEach((file) => fd.append("file", file));
-        await api('/api/v1/posts/', "POST", fd, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-
-        }).then((response) => {
+        fd.append("file", imgFile)
+        console.log(fd)
+        api('/api/v1/members/changeProfile', "POST", fd
+        ).then((response) => {
             if (response.data) {
                 console.log(response.data)
             }
@@ -36,6 +34,8 @@ const Modal = ({ isvisible, onClose }) => {
             .catch((error) => {
                 console.log(api.url)
             })
+
+
     }
 
 
@@ -46,7 +46,7 @@ const Modal = ({ isvisible, onClose }) => {
             <div className="w-[600px] flex flex-col">
                 <button className="bg-white text-xl place-self-end" onClick={() => onClose()}>X</button>
                 <div className="bg-white p-2 rounded">
-                    <input type="file" onChange={handleChangeFile}></input>
+                    <input type="file" name="file" onChange={handleChangeFile}></input>
                     <button onClick={WriteBoard}>asdsadsdas</button>
                 </div>
             </div>
