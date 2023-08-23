@@ -39,7 +39,7 @@ export default function User() {
                         nickname: data.data.nickName,
                         profilePath: data.data.profilePath
                     });
-                    console.log(data.data.profilePath)
+                    console.log(data.data.id)
                 }
             } catch (error) {
                 console.log(error);

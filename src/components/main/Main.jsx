@@ -6,9 +6,7 @@ import MainPostRail from './MainPostRail';
 
 const Main = () => {
   return <div>
-    <MainLeftRail></MainLeftRail>
     <MainPostRail></MainPostRail>
-    <RemoteController></RemoteController>
   </div>;
 };
 
