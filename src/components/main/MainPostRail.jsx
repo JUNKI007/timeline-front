@@ -25,7 +25,6 @@ const MainPostRail = () => {
       try {
         const response = await api(apiUrl, 'GET');
         setPosts(response.data);
-
         response.data.forEach((post) => {
           dispatch(fetchHeartsThunk(post.id));
         });
@@ -58,7 +57,8 @@ const MainPostRail = () => {
               <div className="bg-white">
                 <div className="flex">
                   <div className="w-12">
-                    <img src={post.member.profilepath} alt="Profile" />
+                    <img src={`http://192.168.0.226:4000/${post.member.profilePath}`} alt="Profile" />
+
                   </div>
                   <div className="ml-3">
                     <p className="font-bold">{post.member.nickName}</p>
@@ -74,7 +74,8 @@ const MainPostRail = () => {
                   <p>{post.content}</p>
                 </div>
                 <div className="-mx-5">
-                  <img src={post.imgPaths} alt="Post" />
+                  <img src={`http://192.168.0.226:4000/${post.imgPaths}`} alt="Post" />
+
                 </div>
                 <div className="my-3">
                   <p>좋아요: {likes[post.id] || 0}</p>
