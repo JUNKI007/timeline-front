@@ -1,6 +1,6 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 
 
 
@@ -112,7 +112,7 @@ export default MyHeader => {
         </Popover.Group>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
+          <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
             Login
           </a>
         </div>

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '../../network/api';
 import { BiWorld } from "react-icons/bi";
-import { fetchHeartsThunk, updateLikeThunk } from '../../feature/likeSlice';
+import { updateLikeThunk } from '../../feature/likeSlice';
 import { fetchCommentsByPostId, addComment } from '../../feature/commentSlice';
-import './MainPostRail.scss'; // SCSS 파일 임포트
+import './MainPostRail.scss';
 
 const MainPostRail = () => {
   const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
-  const likes = useSelector(state => state.likes);
   const comments = useSelector(state => state?.comments?.commentsByPostId);
+
   const handleLike = (postId) => {
     dispatch(updateLikeThunk(postId));
   };
@@ -25,9 +25,6 @@ const MainPostRail = () => {
       try {
         const response = await api(apiUrl, 'GET');
         setPosts(response.data);
-        response.data.forEach((post) => {
-          dispatch(fetchHeartsThunk(post.id));
-        });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -53,12 +50,10 @@ const MainPostRail = () => {
         <div className="my-6 max-w-[25rem] sm:max-w-[33rem] mx-auto">
           {posts.map(post => (
             <div className="post" key={post.id}>
-              {/* ... (포스트의 상단 부분) */}
               <div className="bg-white">
                 <div className="flex">
                   <div className="w-12">
                     <img src={`http://192.168.0.226:4000/${post.member.profilePath}`} alt="Profile" />
-
                   </div>
                   <div className="ml-3">
                     <p className="font-bold">{post.member.nickName}</p>
@@ -75,10 +70,9 @@ const MainPostRail = () => {
                 </div>
                 <div className="-mx-5">
                   <img src={`http://192.168.0.226:4000/${post.imgPaths}`} alt="Post" />
-
                 </div>
                 <div className="my-3">
-                  <p>좋아요: {likes[post.id] || 0}</p>
+                  <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
                     <button className="button like-button" onClick={() => handleLike(post.id)}>
                       <span className="icon">👍</span> 좋아요
@@ -94,7 +88,6 @@ const MainPostRail = () => {
         </div>
       </div>
 
-      {/* 댓글 모달 */}
       {isCommentModalOpen && (
         <div className="comment-modal">
           <div className="comments">
