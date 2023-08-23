@@ -12,12 +12,15 @@
     "axios": "^1.4.0",
     "boxicons": "^2.1.4",
     "react": "^18.2.0",
+    "react-awesome-slider": "^4.1.0",
+    "react-awesome-slider-fc": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "scss": "^0.2.4",
     "sass": "^1.66.1",
     "web-vitals": "^2.1.4"
   },
@@ -47,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "sass": "^1.66.1",
+    "sass-loader": "^13.3.2",
     "tailwindcss": "^3.3.3"
   }
 }
