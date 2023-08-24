@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../network/api";
 
 const initialState = { subjects: [] };
 
