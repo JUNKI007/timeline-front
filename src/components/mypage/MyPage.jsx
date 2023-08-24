@@ -4,32 +4,33 @@ import { Fragment, useEffect, useState } from "react"
 import CoreStyles from 'react-awesome-slider/src/core/styles.scss';
 import AnimationStyles from 'react-awesome-slider/src/styled/fall-animation/fall-animation.scss';
 import MyPageModal from "./MyPageModal";
+import { useParams } from 'react-router-dom';
 import './MyPage.css'
 
 export default function MyPage() {
     const [showModal, setShowModal] = useState(false)
     const [myPosts, setMyPosts] = useState([])
-    const [selectedPost, setSelectedPost] = useState([]);
+    const [selectedPost, setSelectedPost] = useState(null);
     const [search, setSearch] = useState("");
+    const { id } = useParams();
 
     const onBlurHandler = (e) => {
         setSearch(e.target.value)
     }
 
     const getData = async () => {
-        const apiUrl = `/api/v1/posts/member/5`
+        const apiUrl = `/api/v1/posts/member/${id}`
         try {
             const data = await api(apiUrl, 'GET')
             setMyPosts(data.data);
-            console.log(data.data)
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
     }
+
     useEffect(() => {
         getData()
-    }, [showModal], [search])
+    }, [showModal, search])
 
     return (
         <Fragment>
@@ -60,25 +61,22 @@ export default function MyPage() {
                 <div className="w-screen sm:w-full">
                     <div className="container" >
                         {myPosts
-                            .filter(myPost => search === "" || myPost.title === search)
+                            .filter(myPost => search === "" || myPost.title.includes(search))
                             .map(myPost => (
-                                <div class="item"
-
+                                <div className="item"
                                     key={myPost.id}
                                     onClick={() => {
                                         setSelectedPost(myPost);
                                         setShowModal(true);
                                     }}
                                 >
-                                    <img class="img" src={`http://192.168.0.226:4000/${myPost.imgPaths}`}></img>
+                                    <img className="img" src={`http://192.168.0.226:4000/${myPost.imgPaths}`} alt={myPost.title} />
                                 </div>
                             ))}
                     </div>
                 </div>
             </div>
-            <MyPageModal isvisible={showModal} onClose={() => setShowModal(false)} myPost={selectedPost}></MyPageModal>
+            {selectedPost && <MyPageModal isvisible={showModal} onClose={() => setShowModal(false)} myPost={selectedPost}></MyPageModal>}
         </Fragment>
     )
-
 }
-

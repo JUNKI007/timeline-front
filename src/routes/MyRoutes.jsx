@@ -26,7 +26,7 @@ const MyRoutes = () => {
             <Route element={<Template></Template>}>
                 <Route path='/' element={<Main />} />
                 <Route path="/user" element={<User />} />
-                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/mypage/:userId" component={MyPage} />
                 <Route path="/hotpost" element={<HotPost></HotPost>} />
             </Route>
         </Routes>
