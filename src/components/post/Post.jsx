@@ -36,23 +36,19 @@ const PostModal = ({ setPostModalOpen }) => {
     }
 
     const onChangeSetDateHandler = (e) => {
-        console.log(e.target.value)
         const selectedDate = new Date(e.target.value);
         setSetDate(selectedDate)
     }
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value);
-        console.log(title)
     }
 
     const onChangeContent = (e) => {
         setContent(e.target.value);
-        console.log(content)
     }
 
     const writePost = async () => {
-        console.log("WriteBoard")
         const fd = new FormData();
         fd.append("file", imgFile);
         fd.append("title", title);
@@ -61,6 +57,7 @@ const PostModal = ({ setPostModalOpen }) => {
         fd.append("setDate", setDate.toDateString());
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
+                //포스트 올린거 응답오면 닫기
                 setPostModalOpen(false);
             }
         }).catch((error) => {
@@ -72,7 +69,7 @@ const PostModal = ({ setPostModalOpen }) => {
             <div className="post-modal-content">
                 <button className="close-button" onClick={closeModal}>X</button>
                 <img src={imgBase64} alt="First slide" style={{ alignContent: 'center', width: "100px", height: "100px" }} />
-                <input type='file' placeholder='그림파일만 넣어' name="file" onChange={handleChangeFile}></input><p></p>
+                <input type='file' onChange={handleChangeFile}></input><p></p>
                 <input type='text' placeholder='title' name="title" onChange={onChangeTitle}></input><p></p>
                 <input type='text' placeholder='content' name="content" onChange={onChangeContent}></input><p></p>
                 <input type='date' onChange={onChangeSetDateHandler}></input><p></p>
