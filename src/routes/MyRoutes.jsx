@@ -18,8 +18,8 @@ const MyRoutes = () => {
             <Route path="/signup" element={<SignUp></SignUp>} />
             <Route element={<Template></Template>}>
                 <Route path='/' element={<Main />} />
-                <Route path="/user" element={<User />} />
-                <Route path="/mypage/:userId" component={MyPage} />
+                <Route path="/user/:userId" element={<User />} />
+                <Route path="/mypage/:userId" element={<MyPage></MyPage>} />
                 <Route path="/hotpost" element={<HotPost></HotPost>} />
             </Route>
         </Routes>
