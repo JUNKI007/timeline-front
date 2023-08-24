@@ -77,6 +77,7 @@ export default function User() {
         }
     useEffect(() => {
         getData();
+        getSubjects()
     }, [showModal])
 
     return (
@@ -85,19 +86,13 @@ export default function User() {
                 <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <img
-                            className="mx-auto h-10 w-auto"
+                            className="mx-auto h-30 w-100 rounded-md cursor-pointer"
                             src={`http://192.168.0.226:4000/${user.profilePath}`}
                             alt="Your Company"
                             onClick={() => setShowModal(true)}
                         />
-                        {subjects.map(subject => (
-                            <div>{subject.name}</div>
-                        ))}
-                        <input onChange={onChangeSubjectHandler}
-                            name="name"
-                            value={addSubject.name}></input>
-                        <button onClick={onAddSubjectHandler}>assdasdad</button>
                     </div>
+
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form className="space-y-6" onSubmit={onSubmitHandler}>
                             <div>

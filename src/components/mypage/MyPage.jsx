@@ -12,14 +12,14 @@ export default function MyPage() {
     const [myPosts, setMyPosts] = useState([])
     const [selectedPost, setSelectedPost] = useState(null);
     const [search, setSearch] = useState("");
-    const { id } = useParams();
+    const { userId } = useParams();
 
     const onBlurHandler = (e) => {
         setSearch(e.target.value)
     }
 
     const getData = async () => {
-        const apiUrl = `/api/v1/posts/member/${id}`
+        const apiUrl = `/api/v1/posts/member/${userId}`
         try {
             const data = await api(apiUrl, 'GET')
             setMyPosts(data.data);

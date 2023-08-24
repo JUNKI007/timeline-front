@@ -7,7 +7,8 @@ import SignUp from "../components/auth/SignUp"
 import HotPost from "../components/hotpost/HotPost"
 import User from "../components/user/User"
 import MyPage from "../components/mypage/MyPage"
-import { useState } from 'react';
+import Timeline from "../components/timeline/Timeline"
+import Myfriend from "../components/friend/Friend"
 
 
 
@@ -19,8 +20,10 @@ const MyRoutes = () => {
             <Route element={<Template></Template>}>
                 <Route path='/' element={<Main />} />
                 <Route path="/user" element={<User />} />
-                <Route path="/mypage/:userId" component={MyPage} />
+                <Route path='/myfriend' element={<Myfriend />} />
+                <Route path="/mypage/:userId" element={<MyPage></MyPage>} />
                 <Route path="/hotpost" element={<HotPost></HotPost>} />
+                <Route path="/timeline/:userId" element={<Timeline></Timeline>} />
             </Route>
         </Routes>
     </BrowserRouter>

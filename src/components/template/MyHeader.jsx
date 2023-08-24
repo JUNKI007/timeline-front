@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Popover } from '@headlessui/react'
+import { Link } from 'react-router-dom';
 
 
 
@@ -29,8 +30,8 @@ function Tooltip({ label, children }) {
 function FriendIcon(props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg"
-      fill="none" v
-      ViewBox="0 0 24 24"
+      fill="none"
+      viewBox="0 0 24 24"
       strokeWidth={1.5} stroke="currentColor"
       className="w-6 h-6"
       {...props}
@@ -89,29 +90,38 @@ const MyHeader = () => {
 
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Tooltip label="홈">
-              <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">
                 <HomeIcon />
-              </a>
+              </Link>
             </Tooltip>
 
-            <Tooltip label="친구">
-              <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
+            <Tooltip label="내친구 보기">
+              <Link to="/myfriend" className="text-sm font-semibold leading-6 text-gray-900">
                 <FriendIcon />
-              </a>
+              </Link>
             </Tooltip>
 
             <Tooltip label="알람">
-              <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link to="/myfriend" className="text-sm font-semibold leading-6 text-gray-900">
                 <AlarmIcon />
-              </a>
+              </Link>
             </Tooltip>
           </Popover.Group>
 
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
-              Login
-            </a>
+            {localStorage.getItem('token') ? <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2" onClick={() => localStorage.clear()}>
+              Logout
+            </Link> :
+              <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
+                LOGOUT
+              </Link>}
+            <Link to="/user" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2 ml-2">
+              MyInfo
+            </Link>
           </div>
+
+
+
         </nav>
       </header>
     </>

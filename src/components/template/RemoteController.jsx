@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './RemoteController.scss';
-import Post from '../post/Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBool } from '../../feature/postingModalOpen';
 
@@ -28,7 +27,7 @@ const RemoteController = () => {
       <div className="remote-controller-inner">
         <button onClick={() => handleScrollToTop()}>Top</button>
         <Link to="/user">My Post</Link>
-        <Link to="/timeline">Timeline</Link>
+        <Link to="/timeline/5">Timeline</Link>
         <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
       </div>
     </div>

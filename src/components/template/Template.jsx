@@ -8,7 +8,7 @@ import PostModal from "../post/Post"
 const Template = () => {
     const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
-    return <div>
+    return <div >
         {/*  마이헤더 */}
         <MyHeader></MyHeader>
         <MainLeftRail></MainLeftRail>

@@ -125,9 +125,10 @@ const MainPostRail = () => {
                 <div className="my-3">
                   <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
-                    {post.heart.isit ? (
-                      <button className="button like-button">
-                        이미 좋아한 게시글
+                    {post.heart ? (
+                      <button className="button dislike-button"
+                        onClick={() => handleLike(post.id)}>
+                        <span className="icon">👌</span> 좋아요
                       </button>
                     ) : (
                       <button
