@@ -20,9 +20,6 @@ export default function SignUp() {
         setUser({ ...user, [name]: value })
     }
 
-    //회원가입시 이동
-    const nav = useNavigate();
-
     //회원가입
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -37,9 +34,13 @@ export default function SignUp() {
         }
     }
 
+    //회원가입시 이동
+    const nav = useNavigate();
+
     return (
         <>
             <ToastContainer position="top-center" />
+
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
