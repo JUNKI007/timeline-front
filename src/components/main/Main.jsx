@@ -6,15 +6,8 @@ import MainPostRail from './MainPostRail';
 import PostModal from '../post/Post';
 
 const Main = () => {
-
-    //post 쓰기 모달창
-    const [postModalOpen, setPostModalOpen] = useState(false);
-
     return <div>
-        <MainLeftRail></MainLeftRail>
-        <MainPostRail postModalOpen={postModalOpen}></MainPostRail>
-        <RemoteController setPostModalOpen={setPostModalOpen}></RemoteController>
-        {postModalOpen && (<PostModal postModalOpen={postModalOpen} setPostModalOpen={setPostModalOpen} />)}
+        <MainPostRail></MainPostRail>
     </div>;
 };
 

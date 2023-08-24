@@ -6,9 +6,10 @@ import { updateLikeThunk } from '../../feature/likeSlice';
 import { fetchCommentsByPostId, addComment } from '../../feature/commentSlice';
 import './MainPostRail.scss';
 
-const MainPostRail = ({ postModalOpen }) => {
+const MainPostRail = () => {
   const dispatch = useDispatch();
   const comments = useSelector(state => state?.comments?.commentsByPostId);
+  const isPostionOpen = useSelector(state => state.openPostingModal.isOpen)
   const [posts, setPosts] = useState([]);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [currentPostId, setCurrentPostId] = useState(null);
@@ -28,7 +29,7 @@ const MainPostRail = ({ postModalOpen }) => {
     };
 
     fetchPosts();
-  }, [observer, postModalOpen === false]);
+  }, [observer, isPostionOpen === false]);
 
   const handleOpenCommentModal = (postId) => {
     setCommentModalOpen(true);

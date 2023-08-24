@@ -4,8 +4,9 @@ import './PostModal.scss';
 import { api } from '../../network/api';
 import { getMySubjects } from '../../feature/subjectSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { setBool } from '../../feature/postingModalOpen';
 
-const PostModal = ({ postModalOpen, setPostModalOpen }) => {
+const PostModal = () => {
 
     const [imgBase64, setImgBase64] = useState(""); // 파일 base64
     const [imgFile, setImgFile] = useState(null);	//파일
@@ -16,17 +17,15 @@ const PostModal = ({ postModalOpen, setPostModalOpen }) => {
 
     const dispatch = useDispatch();
     const subjects = useSelector(state => state.mySubject);
+    const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
     const closeModal = () => {
-        setPostModalOpen(false);
+        dispatch(setBool(!openPostingModal));
     };
 
     useEffect(() => {
-
-        dispatch(getMySubjects());
-
-
-    }, [postModalOpen === true])
+        //dispatch(getMySubjects());
+    }, [openPostingModal === true])
 
     const handleChangeFile = (event) => {
         setImgFile(event.target.files[0]);
@@ -70,7 +69,7 @@ const PostModal = ({ postModalOpen, setPostModalOpen }) => {
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
                 //포스트 올린거 응답오면 닫기
-                setPostModalOpen(false);
+                dispatch(setBool(!openPostingModal));
             }
         }).catch((error) => {
         })

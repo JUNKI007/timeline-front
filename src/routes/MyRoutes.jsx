@@ -5,16 +5,11 @@ import 'boxicons/css/boxicons.min.css'
 import Main from "../components/main/Main"
 import SignUp from "../components/auth/SignUp"
 import HotPost from "../components/hotpost/HotPost"
+import User from "../components/user/User"
+import MyPage from "../components/mypage/MyPage"
 
 
 const MyRoutes = () => {
-    const [me, setMe] = useState({
-        id: '',
-        money: '',
-        name: '',
-        token: '',
-    })
-
     return <BrowserRouter>
         <Routes>
             <Route path="/login" element={<Login></Login>} />
