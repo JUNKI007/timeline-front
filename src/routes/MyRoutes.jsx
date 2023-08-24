@@ -23,11 +23,11 @@ const MyRoutes = () => {
             <Route path="/login" element={<Login></Login>} />
             <Route path="/signup" element={<SignUp></SignUp>} />
 
-            
+
             <Route element={<Template></Template>}>
-                 <Route path='/' element={<Main/>}/>
-                 <Route path="/hotpost" element={<HotPost></HotPost>} />
-    
+                <Route path='/' element={<Main />} />
+                <Route path="/hotpost" element={<HotPost></HotPost>} />
+
             </Route>
         </Routes>
     </BrowserRouter>

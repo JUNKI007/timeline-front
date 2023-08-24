@@ -7,17 +7,14 @@ import { fetchCommentsByPostId, addComment } from '../../feature/commentSlice';
 import './MainPostRail.scss';
 
 const MainPostRail = () => {
-  const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
   const comments = useSelector(state => state?.comments?.commentsByPostId);
-
-  const handleLike = (postId) => {
-    dispatch(updateLikeThunk(postId));
-  };
-
+  const [posts, setPosts] = useState([]);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [currentPostId, setCurrentPostId] = useState(null);
   const [newComment, setNewComment] = useState("");
+  const [observer, setObserver] = useState(false);
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -31,7 +28,7 @@ const MainPostRail = () => {
     };
 
     fetchPosts();
-  }, [dispatch]);
+  }, [observer]);
 
   const handleOpenCommentModal = (postId) => {
     setCommentModalOpen(true);
@@ -42,6 +39,20 @@ const MainPostRail = () => {
   const handleAddComment = () => {
     dispatch(addComment({ postId: currentPostId, comment: newComment }));
     setNewComment("");
+  };
+
+  const handleLike = async (postId) => {
+    await dispatch(updateLikeThunk(postId));
+    const updatedPosts = posts.map((post) =>
+      post.id === postId
+        ? {
+          ...post,
+          isLiked: !post.isLiked,
+        }
+        : post
+    );
+    setObserver(!observer);
+    setPosts(updatedPosts);
   };
 
   return (
@@ -74,9 +85,13 @@ const MainPostRail = () => {
                 <div className="my-3">
                   <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
-                    <button className="button like-button" onClick={() => handleLike(post.id)}>
-                      <span className="icon">👍</span> 좋아요
-                    </button>
+                    {post.heart.isit ? (
+                      <button className="button like-button">이미 좋아한 게시글</button>
+                    ) : (
+                      <button className="button like-button" onClick={() => handleLike(post.id)}>
+                        <span className="icon">👍</span> 좋아요
+                      </button>
+                    )}
                     <button className="button comment-button" onClick={() => handleOpenCommentModal(post.id)}>
                       <span className="icon">💬</span> 댓글 달기
                     </button>
@@ -89,21 +104,23 @@ const MainPostRail = () => {
       </div>
 
       {isCommentModalOpen && (
-        <div className="comment-modal">
-          <div className="comments">
-            {comments[currentPostId]?.map(comment => (
-              <p key={comment.id}>{comment.comment}</p>
-            ))}
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="comments">
+              {comments[currentPostId]?.map(comment => (
+                <p key={comment.id}>{comment.comment}</p>
+              ))}
+            </div>
+            <div className="comment-input">
+              <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+              <button onClick={handleAddComment}>댓글 작성</button>
+            </div>
+            <button className="modal-close-btn" onClick={() => setCommentModalOpen(false)}>닫기</button>
           </div>
-          <div className="comment-input">
-            <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-            <button onClick={handleAddComment}>댓글 작성</button>
-          </div>
-          <button onClick={() => setCommentModalOpen(false)}>닫기</button>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default MainPostRail;

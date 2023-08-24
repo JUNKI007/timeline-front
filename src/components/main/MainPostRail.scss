@@ -32,6 +32,7 @@
             &.font-bold {
               font-weight: bold;
             }
+
             &.text-xs {
               font-size: 0.75rem;
             }
@@ -61,38 +62,77 @@
 }
 
 .button {
-padding: 0.5rem 1rem; // 텍스트 기반 버튼의 크기 조정
-border: none;
-border-radius: 0.25rem; // 경계 반경 조정
-font-size: 0.875rem; // 글꼴 크기 조정
-cursor: pointer;
-transition: background-color 0.3s;
+  padding: 0.5rem 1rem; // 텍스트 기반 버튼의 크기 조정
+  border: none;
+  border-radius: 0.25rem; // 경계 반경 조정
+  font-size: 0.875rem; // 글꼴 크기 조정
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .like-button {
-background-color: #1877f2;
-color: white;
+  background-color: #1877f2;
+  color: white;
 }
 
 .like-button:hover {
-background-color: #165dbb;
+  background-color: #165dbb;
 }
 
 .comment-button {
-background-color: #f0f2f5;
-color: #1c1e21;
-margin-left: 0.625rem; // 여백 조정
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  margin-left: 0.625rem; // 여백 조정
 }
 
 .comment-button:hover {
-background-color: #e4e6e9;
+  background-color: #e4e6e9;
 }
 
 .button-group {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .icon {
-margin-right: 0.5rem; // 아이콘 간격 조정
+  margin-right: 0.5rem; // 아이콘 간격 조정
+}
+
+/* 모달의 전체 레이아웃 및 배경 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* 다른 요소 위에 위치하도록 */
+}
+
+/* 실제 모달 창 */
+.modal-content {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 500px;
+  /* 모달의 최대 넓이 설정 */
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* 그림자 효과 */
+}
+
+/* 모달 닫기 버튼 */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }

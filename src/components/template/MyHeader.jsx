@@ -79,45 +79,43 @@ function HomeIcon(props) {
     </svg>
   );
 }
-export default MyHeader => {
+const MyHeader = () => {
   return (
-    <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
-        </div>
+    <>
+      <header className="bg-white">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div className="flex lg:flex-1">
+          </div>
 
+          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+            <Tooltip label="홈">
+              <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+                <HomeIcon />
+              </a>
+            </Tooltip>
 
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Tooltip label="홈">
-            <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-              <HomeIcon />
+            <Tooltip label="친구">
+              <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
+                <FriendIcon />
+              </a>
+            </Tooltip>
+
+            <Tooltip label="알람">
+              <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
+                <AlarmIcon />
+              </a>
+            </Tooltip>
+          </Popover.Group>
+
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
+              Login
             </a>
-          </Tooltip>
-
-          <Tooltip label="친구">
-            <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
-              <FriendIcon />
-            </a>
-          </Tooltip>
-
-
-          <Tooltip label="알람">
-            <a href="/friend/Friend" className="text-sm font-semibold leading-6 text-gray-900">
-              <AlarmIcon />
-            </a>
-          </Tooltip>
-        </Popover.Group>
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
-            Login
-          </a>
-        </div>
-      </nav>
-
-    </header>
-  )
+          </div>
+        </nav>
+      </header>
+    </>
+  );
 }
+
+export default MyHeader;

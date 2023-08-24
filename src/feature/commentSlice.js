@@ -5,21 +5,20 @@ const initialState = {
   commentsByPostId: {},
 };
 
-// 게시글에 해당하는 댓글들을 가져오는 비동기 액션
+
 export const fetchCommentsByPostId = createAsyncThunk(
   'comments/fetchByPostId',
   async (postId) => {
-    const response = await api(`/comments/to-post/${postId}`, "GET");
+    const response = await api(`/api/v1/comments/to-post/${postId}`, "GET");
     return { postId, comments: response.data };
   }
 );
 
-// 댓글 추가하는 비동기 액션
 export const addComment = createAsyncThunk(
   'comments/add',
   async ({ postId, comment }) => {
-    const response = await api(`/comments/to-post/${postId}`, "POST", { comment });
-    return response.data; // 새로 추가된 댓글 정보
+    const response = await api(`/api/v1/comments/to-post/${postId}`, "POST", { comment });
+    return response.data;
   }
 );
 
