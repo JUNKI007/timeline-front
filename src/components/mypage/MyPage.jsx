@@ -29,7 +29,7 @@ export default function MyPage() {
     }
     useEffect(() => {
         getData()
-    }, [showModal])
+    }, [showModal], [search])
 
     return (
         <Fragment>
@@ -39,7 +39,8 @@ export default function MyPage() {
                         <input
                             style={{ border: "10px solid red", color: "red" }}
                             type="text"
-                            onBlur={onBlurHandler} />
+                            onBlur={onBlurHandler}
+                        />
                         <AwesomeSlider animation="fallAnimation" cssModule={[CoreStyles, AnimationStyles]}>
                             {myPosts.map(myPost => (
                                 <div className="myPost"
@@ -55,22 +56,23 @@ export default function MyPage() {
                     </div>
                 </div>
             </div>
-
             <div className="main-post-rail w-screen sm:w-full">
                 <div className="w-screen sm:w-full">
                     <div className="container" >
-                        {myPosts.map(myPost => (
-                            <div class="item"
+                        {myPosts
+                            .filter(myPost => search === "" || myPost.title === search)
+                            .map(myPost => (
+                                <div class="item"
 
-                                key={myPost.id}
-                                onClick={() => {
-                                    setSelectedPost(myPost);
-                                    setShowModal(true);
-                                }}
-                            >
-                                <img class="img" src={`http://192.168.0.226:4000/${myPost.imgPaths}`}></img>
-                            </div>
-                        ))}
+                                    key={myPost.id}
+                                    onClick={() => {
+                                        setSelectedPost(myPost);
+                                        setShowModal(true);
+                                    }}
+                                >
+                                    <img class="img" src={`http://192.168.0.226:4000/${myPost.imgPaths}`}></img>
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>
