@@ -6,7 +6,7 @@ import { fetchHeartsThunk, updateLikeThunk } from '../../feature/likeSlice';
 import { fetchCommentsByPostId, addComment } from '../../feature/commentSlice';
 import './MainPostRail.scss'; // SCSS 파일 임포트
 
-const MainPostRail = () => {
+const MainPostRail = ({ postModalOpen }) => {
   const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
   const likes = useSelector(state => state.likes);
@@ -34,7 +34,7 @@ const MainPostRail = () => {
     };
 
     fetchPosts();
-  }, [dispatch]);
+  }, [dispatch, postModalOpen === false]);
 
   const handleOpenCommentModal = (postId) => {
     setCommentModalOpen(true);
