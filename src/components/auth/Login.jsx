@@ -30,7 +30,7 @@ export default function Login() {
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
+                        className="mx-auto h-30 w-auto"
                         src="https://blog.kakaocdn.net/dn/bv7hY4/btsr62izhtl/SqGJatsoQiNjLDdadee1a1/img.png"
                         alt="Your Company"
                     />

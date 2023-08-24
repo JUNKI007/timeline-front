@@ -20,16 +20,24 @@ const MainPostRail = () => {
   const [newComment, setNewComment] = useState('');
   const [observer, setObserver] = useState(false);
 
+
+
+  const fetchPosts = async () => {
+    const apiUrl = '/api/v1/posts/all';
+    try {
+      const response = await api(apiUrl, 'GET');
+
+     const data = response.data.map((post)=>{return {...post,isLiked:post.heart }})
+      setPosts(data);
+
+      console.log(response.data)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const apiUrl = '/api/v1/posts/all';
-      try {
-        const response = await api(apiUrl, 'GET');
-        setPosts(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    ;
 
     fetchPosts();
   }, [observer, isPostionOpen === false]);
@@ -46,16 +54,17 @@ const MainPostRail = () => {
   };
 
   const handleLike = async (postId) => {
-    await dispatch(updateLikeThunk(postId));
+    dispatch(updateLikeThunk(postId));
     const updatedPosts = posts.map((post) =>
       post.id === postId
         ? {
           ...post,
+          heartCount: post.isLiked ? post.heartCount -1 : post.heartCount +1,
           isLiked: !post.isLiked,
         }
         : post
     );
-    setObserver(!observer);
+    // setObserver(!observer);
     setPosts(updatedPosts);
   };
 
@@ -88,11 +97,12 @@ const MainPostRail = () => {
                     onClick={() => handleProfileMenu(post.member.id)}
                   >
                     <div className="flex items-center position-relative">
-                      <img
-                        src={`http://192.168.0.226:4000/${post.member.profilePath}`}
+                      {post.member.profilePath && <img
+                        src={`http://localhost:4000/${post.member.profilePath}`}
                         alt="Profile"
                         className="mr-2"
-                      />
+                      />}
+                    
                       <p
                         className="font-bold profile-nickname"
                         onClick={() => handleProfileMenu(post.member.id)}
@@ -117,15 +127,16 @@ const MainPostRail = () => {
                   <p>{post.content}</p>
                 </div>
                 <div className="-mx-5">
-                  <img
-                    src={`http://192.168.0.226:4000/${post.imgPaths}`}
+                  {post.imgPaths && <img
+                    src={`http://localhost:4000/${post.imgPaths}`}
                     alt="Post"
-                  />
+                  />}
+                  
                 </div>
                 <div className="my-3">
                   <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
-                    {post.heart ? (
+                    {(post.heart|post.isLiked) ? (
                       <button className="button dislike-button"
                         onClick={() => handleLike(post.id)}>
                         <span className="icon">👌</span> 좋아요
