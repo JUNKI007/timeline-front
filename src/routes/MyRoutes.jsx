@@ -7,6 +7,8 @@ import SignUp from "../components/auth/SignUp"
 import HotPost from "../components/hotpost/HotPost"
 import User from "../components/user/User"
 import MyPage from "../components/mypage/MyPage"
+import { useState } from 'react';
+
 
 
 const MyRoutes = () => {
@@ -17,7 +19,7 @@ const MyRoutes = () => {
             <Route element={<Template></Template>}>
                 <Route path='/' element={<Main />} />
                 <Route path="/user" element={<User />} />
-                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/mypage/:userId" component={MyPage} />
                 <Route path="/hotpost" element={<HotPost></HotPost>} />
             </Route>
         </Routes>

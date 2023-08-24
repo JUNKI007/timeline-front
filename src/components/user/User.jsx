@@ -6,28 +6,58 @@ import Modal from "./Modal"
 export default function User() {
 
     const [showModal, setShowModal] = useState(false)
-
+    const [subjects, setSubjects] = useState([]);
     const [user, setUser] = useState({
         id: '',
         email: '',
         nickname: '',
         profilePath: ''
     })
+    const [addSubject, setAddSubject] = useState({
+        name: ""
+    }
 
+    );
+
+    const onAddSubjectHandler = async (e) => {
+        e.preventDefault();
+        try {
+            await api(`/api/v1/subjects/`, 'POST', addSubject)
+            getSubjects();
+        } catch (error) {
+            console.log(error);
+            console.log(addSubject)
+        }
+    }
     const onChangeHandler = (e) => {
         const { value, name } = e.target
         setUser({ ...user, [name]: value })
     }
 
+    const onChangeSubjectHandler = (e) => {
+        const { value, name } = e.target
+        setAddSubject({ ...addSubject, [name]: value })
+    }
+
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            const data = await api(`/api/v1/members/${user.id}`, 'PATCH', user)
-            console.log(data)
+            await api(`/api/v1/members/${user.id}`, 'PATCH', user)
         } catch (error) {
             console.log(error);
         }
     }
+
+    const getSubjects =
+        async () => {
+            try {
+                const subjects = await api('/api/v1/subjects', 'GET')
+                setSubjects(subjects.data);
+                console.log(subjects.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
     const getData =
         async () => {
             try {
@@ -46,7 +76,7 @@ export default function User() {
             }
         }
     useEffect(() => {
-        getData()
+        getData();
     }, [showModal])
 
     return (
@@ -60,6 +90,13 @@ export default function User() {
                             alt="Your Company"
                             onClick={() => setShowModal(true)}
                         />
+                        {subjects.map(subject => (
+                            <div>{subject.name}</div>
+                        ))}
+                        <input onChange={onChangeSubjectHandler}
+                            name="name"
+                            value={addSubject.name}></input>
+                        <button onClick={onAddSubjectHandler}>assdasdad</button>
                     </div>
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                         <form className="space-y-6" onSubmit={onSubmitHandler}>
