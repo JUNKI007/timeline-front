@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useState } from "react"
 import { api } from '../../network/api'
 import Modal from "./Modal"
-
+import { useDispatch, useSelector } from "react-redux"
+import { setSubjects } from '../../feature/subjectSlice';
 
 export default function User() {
 
     const [showModal, setShowModal] = useState(false)
-    const [subjects, setSubjects] = useState([]);
     const [user, setUser] = useState({
         id: '',
         email: '',
@@ -15,9 +15,10 @@ export default function User() {
     })
     const [addSubject, setAddSubject] = useState({
         name: ""
-    }
+    });
 
-    );
+    const dispatch = useDispatch();
+    const mySubjects = useSelector(state => state.mySubjects.subjects);
 
     const onAddSubjectHandler = async (e) => {
         e.preventDefault();
@@ -51,9 +52,10 @@ export default function User() {
     const getSubjects =
         async () => {
             try {
-                const subjects = await api('/api/v1/subjects', 'GET')
-                setSubjects(subjects.data);
+                const subjects = await api('/api/v1/subjects/with-member', 'GET')
+                //setSubjects(subjects.data);
                 console.log(subjects.data)
+                dispatch(setSubjects(subjects.data));
             } catch (error) {
                 console.log(error);
             }
@@ -90,7 +92,7 @@ export default function User() {
                             alt="Your Company"
                             onClick={() => setShowModal(true)}
                         />
-                        {subjects.map(subject => (
+                        {mySubjects.map(subject => (
                             <div>{subject.name}</div>
                         ))}
                         <input onChange={onChangeSubjectHandler}

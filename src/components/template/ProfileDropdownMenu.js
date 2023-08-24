@@ -36,8 +36,7 @@ function ProfileDropdownMenu({ selectedUserId }) {
                                         navigate(`/mypage/${selectedUserId}`);
                                         closeModal();
                                     }}
-                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-                                >
+                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
                                     Mypage로 이동하기
                                 </button>
                                 <button
@@ -46,11 +45,15 @@ function ProfileDropdownMenu({ selectedUserId }) {
                                         // 이곳에서 API 호출이 필요할 수 있습니다.
                                         // closeModal();
                                     }}
-                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
-                                >
+                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
                                     친구요청보내기
                                 </button>
-                                {/* ... 신고하기와 차단하기 버튼도 비슷하게 추가 ... */}
+                                <button
+                                    onClick={() => {
+                                    }}
+                                    className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                                    신고하기
+                                </button>
                             </div>
                         </div>
                     </div>

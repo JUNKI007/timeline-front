@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { api } from '../../network/api';
 import { BiWorld } from 'react-icons/bi';
 import { updateLikeThunk } from '../../feature/likeSlice';
@@ -112,8 +111,11 @@ const MainPostRail = () => {
                   </div>
                 </div>
                 <div className="my-3">
-                  <p> 제목 : {post.title} </p>
-                  <p> 주제 : {post.subject.name} </p>
+                  <div className="title-box">
+                    <p className="title">{post.title}</p>
+                    <p> {post.subject.name} </p>
+                  </div>
+
                   <p>{post.content}</p>
                 </div>
                 <div className="-mx-5">
@@ -137,14 +139,29 @@ const MainPostRail = () => {
                         <span className="icon">👍</span> 좋아요
                       </button>
                     )}
-                    <button
-                      className="button comment-button"
-                      onClick={() => handleOpenCommentModal(post.id)}
-                    >
+                    <button className="button comment-button" onClick={() => handleOpenCommentModal(post.id)}>
                       <span className="icon">💬</span> 댓글 달기
                     </button>
                   </div>
                 </div>
+
+                {isCommentModalOpen && (
+                  <div className="modal-overlay">
+                    <div className="modal-content">
+                      <div className="comments">
+                        {comments[currentPostId]?.map(comment => (
+                          <p key={comment.id}>{comment.comment}</p>
+                        ))}
+                      </div>
+                      <div className="comment-input">
+                        <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+                        <button onClick={handleAddComment}>댓글 작성</button>
+                      </div>
+                      <button className="modal-close-btn" onClick={() => setCommentModalOpen(false)}>닫기</button>
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           ))}
