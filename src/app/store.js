@@ -8,7 +8,7 @@ export default configureStore({
     reducer: {
         likes: likesReducer,
         comments: commentsReducer,
-        subjects: subjectSlice,
+        mySubjects: subjectSlice,
         openPostingModal: openPostingModalReducer
     }
 });
