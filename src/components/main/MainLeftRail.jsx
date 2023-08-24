@@ -99,9 +99,16 @@ const MainLeftRail = () => {
     return (
         <div style={{ padding: '50px 0px 0px 370px' }}>
             <div className="mainLeftRail">
-                <div className="mainLeftRail_logo">
-                    TIMELINE
+                <div className="mainLeftRail_logo" style={{ marginBottom: '10px' }}>
+                    <Link to="/">
+                        <img
+                            src="https://blog.kakaocdn.net/dn/bv7hY4/btsr62izhtl/SqGJatsoQiNjLDdadee1a1/img.png"
+                            alt="Logo"
+                            style={{ width: '55%', cursor: 'pointer', marginBottom: '10px', marginLeft: '20%' }}
+                        />
+                    </Link>
                 </div>
+
                 <div ref={mainLeftRailRef} className="mainLeftRail_menu">
                     <div
                         ref={indicatorRef}
@@ -126,7 +133,7 @@ const MainLeftRail = () => {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
