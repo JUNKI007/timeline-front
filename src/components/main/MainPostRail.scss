@@ -5,18 +5,18 @@
     .bg-white {
       background-color: #EBF5FF;
       border-radius: 1rem;
-      padding: 1.5rem 1.5rem;
-      margin-top: 4rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
 
-      &>.flex {
-        // 명확한 선택자 사용
+      .flex {
         align-items: center;
 
-        &>.w-12 {
-          width: 3rem;
-          height: 3rem;
-          margin-bottom: 1rem; // 여기에 마진을 추가
-
+        .w-12 {
+          width: 6rem;
+          height: 6rem;
+          margin-bottom: -1rem;
 
           img {
             border-radius: 50%;
@@ -26,7 +26,7 @@
           }
         }
 
-        &>.ml-3 {
+        .ml-3 {
           margin-left: 0.75rem;
 
           .font-bold {
@@ -37,8 +37,8 @@
             font-size: 0.75rem;
           }
 
-          &>.flex {
-            &>.ml-1 {
+          .flex {
+            .ml-1 {
               margin-left: 0.25rem;
             }
           }
@@ -46,112 +46,136 @@
       }
 
       .my-3 {
-        margin-top: 0.75rem;
-        margin-bottom: 0.75rem;
+        margin: 0.75rem 0;
       }
 
       .-mx-5 {
-        margin-left: -1.25rem;
-        margin-right: -1.25rem;
+        margin: 0 -2%;
+        width: 104%;
+      }
+
+      .button-group {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+
+        .like-button,
+        .comment-button {
+          flex: 1;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
+          transition: background-color 0.3s;
+          margin: 0 1%;
+        }
+
+        .like-button {
+          background-color: #1877f2;
+          color: white;
+
+          &:hover {
+            background-color: #165dbb;
+          }
+        }
+
+        .comment-button {
+          background-color: #f0f2f5;
+          color: #1c1e21;
+
+          &:hover {
+            background-color: #e4e6e9;
+          }
+        }
+
+        .icon {
+          margin-right: 0.5rem;
+        }
+      }
+
+      .title-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .title-box {
+        background-color: #C5D9FF;
+        /* 새로운 배경색으로 변경 */
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0.3rem;
+        /* 조정 가능한 간격 */
+      }
+
+      .title {
+        color: black;
+        /* 제목 텍스트 색상 */
+        font-weight: bold;
+        /* 제목 텍스트 굵기 */
+      }
+
+
+      .subject-box {
+        margin-bottom: 0.5rem;
       }
     }
   }
-}
 
-.profile-nickname {
-  width: auto;
-  white-space: nowrap;
-}
+  .profile-nickname {
+    width: auto;
+    white-space: nowrap;
+  }
 
-.text-xs {
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
+  .text-xs {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-top: 0.5rem;
+  }
 
-.position-relative {
-  position: relative;
-}
+  .position-relative {
+    position: relative;
 
-.position-relative>.ProfileDropdownMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-}
+    .ProfileDropdownMenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  }
 
 
-.button {
-  padding: 0.5rem 1rem; // 텍스트 기반 버튼의 크기 조정
-  border: none;
-  border-radius: 0.25rem; // 경계 반경 조정
-  font-size: 0.875rem; // 글꼴 크기 조정
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+  /* 모달 스타일 */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
 
-.like-button {
-  background-color: #1877f2;
-  color: white;
-}
+  .modal-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 
-.like-button:hover {
-  background-color: #165dbb;
-}
-
-.comment-button {
-  background-color: #f0f2f5;
-  color: #1c1e21;
-  margin-left: 0.625rem; // 여백 조정
-}
-
-.comment-button:hover {
-  background-color: #e4e6e9;
-}
-
-.button-group {
-  display: flex;
-  align-items: center;
-}
-
-.icon {
-  margin-right: 0.5rem; // 아이콘 간격 조정
-}
-
-/* 모달의 전체 레이아웃 및 배경 */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  /* 다른 요소 위에 위치하도록 */
-}
-
-/* 실제 모달 창 */
-.modal-content {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 50%;
-  max-width: 500px;
-  /* 모달의 최대 넓이 설정 */
-  position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /* 그림자 효과 */
-}
-
-/* 모달 닫기 버튼 */
-.modal-close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
+  .modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
 }
