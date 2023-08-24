@@ -37,9 +37,12 @@ export default function Login() {
         }
 
         const info = await api('/api/v1/members/me', 'GET')
+        console.log(info)
         dispatch(setMe({
             id: info.data.id,
-            nickName: info.data.nickName
+            nickName: info.data.nickName,
+            email: info.data.email,
+            profilePath: info.data.profilePath
         }));
 
 

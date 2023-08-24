@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const IME = {
     id: "",
     nickName: "",
-    token: ""
+    token: "",
+    email: "",
+    profilePath: ""
 
 };
 
@@ -17,6 +19,8 @@ export const meSlice = createSlice({
         setMe: (state, { payload }) => {
             state.id = payload.id;
             state.nickName = payload.nickName;
+            state.email = payload.email;
+            state.profilePath = payload.profilePath;
         }
     },
 });
