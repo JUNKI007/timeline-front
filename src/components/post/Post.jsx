@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './PostModal.scss';
 import { api } from '../../network/api';
-import { getMySubjects } from '../../feature/subjectSlice';
+import { setSubjects } from '../../feature/subjectSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBool } from '../../feature/postingModalOpen';
 
@@ -14,9 +14,9 @@ const PostModal = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [setDate, setSetDate] = useState(new Date);
-
+    const [subjectNum, setSubjectNum] = useState("");
     const dispatch = useDispatch();
-    const subjects = useSelector(state => state.mySubject);
+    const mySubjects = useSelector(state => state.mySubjects.subjects);
     const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
     const closeModal = () => {
@@ -24,8 +24,21 @@ const PostModal = () => {
     };
 
     useEffect(() => {
-        //dispatch(getMySubjects());
+        if (mySubjects.length === 0)
+            getSubjects();
+
     }, [openPostingModal === true])
+
+    const getSubjects =
+        async () => {
+            try {
+                const subjects = await api('/api/v1/subjects/with-member', 'GET')
+                console.log(subjects.data)
+                dispatch(setSubjects(subjects.data));
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
     const handleChangeFile = (event) => {
         setImgFile(event.target.files[0]);
@@ -59,12 +72,16 @@ const PostModal = () => {
         setContent(e.target.value);
     }
 
+    const onchangeSubjectNum = (e) => {
+        setSubjectNum(e.target.value);
+    }
+
     const writePost = async () => {
         const fd = new FormData();
         fd.append("file", imgFile);
         fd.append("title", title);
         fd.append("content", content);
-        fd.append("subjectNum", 1);
+        fd.append("subjectNum", subjectNum);
         fd.append("setDate", setDate.toDateString());
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
@@ -77,17 +94,28 @@ const PostModal = () => {
 
     return (
         <div className="modal-overlay">
-            <div className="post-modal-content">
-                <button className="close-button" onClick={closeModal}>X</button>
-                <img src={imgBase64} alt="First slide" style={{ alignContent: 'center', width: "100px", height: "100px" }} />
-                <input type='file' onChange={handleChangeFile}></input><p></p>
-                <input type='text' placeholder='title' name="title" onChange={onChangeTitle}></input><p></p>
-                <input type='text' placeholder='content' name="content" onChange={onChangeContent}></input><p></p>
-                <input type='date' onChange={onChangeSetDateHandler}></input><p></p>
-                <button onClick={writePost}>POST</button><p></p>
-
-            </div>
+            {openPostingModal && (
+                <div className="post-modal-wrapper">
+                    <div className="post-modal-content">
+                        <button className="close-button" onClick={closeModal}>X</button>
+                        <input type="text" placeholder="Title" name="title" className="input-field title-field"></input>
+                        <div className="input-row">
+                            <select className="input-field input-wide" onChange={onchangeSubjectNum}>
+                                {mySubjects.map(subject => (
+                                    <option key={subject.id} value={subject.id}>{subject.name}</option>
+                                ))}
+                            </select>
+                            <input type="file" onChange={handleChangeFile} className="input-field input-wide"></input>
+                        </div>
+                        {imgBase64 && <img src={imgBase64} alt="Image" className="centered-image" />}
+                        <input type="text" placeholder="Content" name="content" className="input-field"></input>
+                        <input type="date" className="input-field"></input>
+                        <button onClick={writePost} className="post-button">POST</button>
+                    </div>
+                </div>
+            )}
         </div>
+
     );
 };
 
