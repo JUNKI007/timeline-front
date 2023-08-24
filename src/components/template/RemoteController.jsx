@@ -5,7 +5,6 @@ import Post from '../post/Post';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBool } from '../../feature/postingModalOpen';
 
-
 const RemoteController = () => {
   const dispatch = useDispatch();
   const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
@@ -14,9 +13,14 @@ const RemoteController = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleScrollToBottom = () => {
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+    window.scrollTo(0, fullHeight - windowHeight);
+  };
+
   const RemoteControllerWritePost = () => {
     dispatch(setBool(!openPostingModal));
-    console.log("openpostingmodal", openPostingModal);
   };
 
   useEffect(() => {
@@ -27,8 +31,10 @@ const RemoteController = () => {
     <div className="remote-controller">
       <div className="remote-controller-inner">
         <button onClick={() => handleScrollToTop()}>Top</button>
-        <Link to="/user">My Post</Link>
+        <button onClick={() => handleScrollToBottom()}>Bottom</button>
+        <Link to="/mypage">My Post</Link>
         <Link to="/timeline">Timeline</Link>
+        <Link to="/user">UserPage</Link>
         <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
       </div>
     </div>
