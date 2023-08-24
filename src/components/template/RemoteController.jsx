@@ -18,7 +18,6 @@ const RemoteController = ({ setPostModalOpen }) => {
         <button onClick={handleScrollToTop}>Top</button>
         <Link to="/user">My Post</Link>
         <Link to="/timeline">Timeline</Link>
-        {/* <Link to="/post">Write Post</Link> */}
         <button onClick={RemoteControllerWritePost}>Write Post</button>
       </div>
     </div>
