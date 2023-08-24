@@ -16,7 +16,7 @@ const PostModal = () => {
     const [setDate, setSetDate] = useState(new Date);
     const [subjectNum, setSubjectNum] = useState("");
     const dispatch = useDispatch();
-    const mySubjects = useSelector(state => state.mySubjects.subjects);
+    const mySubjects = useSelector(state => state.subjects.subjects);
     const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
     const closeModal = () => {

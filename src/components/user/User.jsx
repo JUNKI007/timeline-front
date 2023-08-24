@@ -18,7 +18,7 @@ export default function User() {
     });
 
     const dispatch = useDispatch();
-    const mySubjects = useSelector(state => state.mySubjects.subjects);
+    const mySubjects = useSelector(state => state.subjects.subjects);
 
     const onAddSubjectHandler = async (e) => {
         e.preventDefault();
