@@ -13,7 +13,7 @@ const Main = () => {
         <MainLeftRail></MainLeftRail>
         <MainPostRail postModalOpen={postModalOpen}></MainPostRail>
         <RemoteController setPostModalOpen={setPostModalOpen}></RemoteController>
-        {postModalOpen && (<PostModal setPostModalOpen={setPostModalOpen} />)}
+        {postModalOpen && (<PostModal postModalOpen={postModalOpen} setPostModalOpen={setPostModalOpen} />)}
     </div>;
 };
 

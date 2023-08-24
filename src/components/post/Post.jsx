@@ -1,9 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PostModal.scss';
 import { api } from '../../network/api';
+import { getMySubjects } from '../../feature/subjectSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const PostModal = ({ setPostModalOpen }) => {
+const PostModal = ({ postModalOpen, setPostModalOpen }) => {
 
     const [imgBase64, setImgBase64] = useState(""); // 파일 base64
     const [imgFile, setImgFile] = useState(null);	//파일
@@ -12,9 +14,19 @@ const PostModal = ({ setPostModalOpen }) => {
     const [content, setContent] = useState("");
     const [setDate, setSetDate] = useState(new Date);
 
+    const dispatch = useDispatch();
+    const subjects = useSelector(state => state.mySubject);
+
     const closeModal = () => {
         setPostModalOpen(false);
     };
+
+    useEffect(() => {
+
+        dispatch(getMySubjects());
+
+
+    }, [postModalOpen === true])
 
     const handleChangeFile = (event) => {
         setImgFile(event.target.files[0]);
