@@ -16,7 +16,6 @@ const Main = () => {
         <RemoteController setPostModalOpen={setPostModalOpen}></RemoteController>
         {postModalOpen && (<PostModal postModalOpen={postModalOpen} setPostModalOpen={setPostModalOpen} />)}
     </div>;
-
 };
 
 export default Main;

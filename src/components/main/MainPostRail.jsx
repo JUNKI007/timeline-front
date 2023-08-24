@@ -2,22 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '../../network/api';
 import { BiWorld } from "react-icons/bi";
-import { fetchHeartsThunk, updateLikeThunk } from '../../feature/likeSlice';
+import { updateLikeThunk } from '../../feature/likeSlice';
 import { fetchCommentsByPostId, addComment } from '../../feature/commentSlice';
-import './MainPostRail.scss'; // SCSS 파일 임포트
+import './MainPostRail.scss';
 
 const MainPostRail = ({ postModalOpen }) => {
-  const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
-  const likes = useSelector(state => state.likes);
   const comments = useSelector(state => state?.comments?.commentsByPostId);
-  const handleLike = (postId) => {
-    dispatch(updateLikeThunk(postId));
-  };
-
+  const [posts, setPosts] = useState([]);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [currentPostId, setCurrentPostId] = useState(null);
   const [newComment, setNewComment] = useState("");
+  const [observer, setObserver] = useState(false);
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,16 +22,13 @@ const MainPostRail = ({ postModalOpen }) => {
       try {
         const response = await api(apiUrl, 'GET');
         setPosts(response.data);
-        response.data.forEach((post) => {
-          dispatch(fetchHeartsThunk(post.id));
-        });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchPosts();
-  }, [dispatch, postModalOpen === false]);
+  }, [observer, postModalOpen === false]);
 
   const handleOpenCommentModal = (postId) => {
     setCommentModalOpen(true);
@@ -47,18 +41,30 @@ const MainPostRail = ({ postModalOpen }) => {
     setNewComment("");
   };
 
+  const handleLike = async (postId) => {
+    await dispatch(updateLikeThunk(postId));
+    const updatedPosts = posts.map((post) =>
+      post.id === postId
+        ? {
+          ...post,
+          isLiked: !post.isLiked,
+        }
+        : post
+    );
+    setObserver(!observer);
+    setPosts(updatedPosts);
+  };
+
   return (
     <div className="main-post-rail w-screen sm:w-full">
       <div className="w-screen sm:w-full">
         <div className="my-6 max-w-[25rem] sm:max-w-[33rem] mx-auto">
           {posts.map(post => (
             <div className="post" key={post.id}>
-              {/* ... (포스트의 상단 부분) */}
               <div className="bg-white">
                 <div className="flex">
                   <div className="w-12">
                     <img src={`http://192.168.0.226:4000/${post.member.profilePath}`} alt="Profile" />
-
                   </div>
                   <div className="ml-3">
                     <p className="font-bold">{post.member.nickName}</p>
@@ -75,14 +81,17 @@ const MainPostRail = ({ postModalOpen }) => {
                 </div>
                 <div className="-mx-5">
                   <img src={`http://192.168.0.226:4000/${post.imgPaths}`} alt="Post" />
-
                 </div>
                 <div className="my-3">
-                  <p>좋아요: {likes[post.id] || 0}</p>
+                  <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
-                    <button className="button like-button" onClick={() => handleLike(post.id)}>
-                      <span className="icon">👍</span> 좋아요
-                    </button>
+                    {post.heart.isit ? (
+                      <button className="button like-button">이미 좋아한 게시글</button>
+                    ) : (
+                      <button className="button like-button" onClick={() => handleLike(post.id)}>
+                        <span className="icon">👍</span> 좋아요
+                      </button>
+                    )}
                     <button className="button comment-button" onClick={() => handleOpenCommentModal(post.id)}>
                       <span className="icon">💬</span> 댓글 달기
                     </button>
@@ -94,23 +103,24 @@ const MainPostRail = ({ postModalOpen }) => {
         </div>
       </div>
 
-      {/* 댓글 모달 */}
       {isCommentModalOpen && (
-        <div className="comment-modal">
-          <div className="comments">
-            {comments[currentPostId]?.map(comment => (
-              <p key={comment.id}>{comment.comment}</p>
-            ))}
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="comments">
+              {comments[currentPostId]?.map(comment => (
+                <p key={comment.id}>{comment.comment}</p>
+              ))}
+            </div>
+            <div className="comment-input">
+              <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+              <button onClick={handleAddComment}>댓글 작성</button>
+            </div>
+            <button className="modal-close-btn" onClick={() => setCommentModalOpen(false)}>닫기</button>
           </div>
-          <div className="comment-input">
-            <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-            <button onClick={handleAddComment}>댓글 작성</button>
-          </div>
-          <button onClick={() => setCommentModalOpen(false)}>닫기</button>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default MainPostRail;
