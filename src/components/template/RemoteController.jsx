@@ -33,6 +33,7 @@ const RemoteController = () => {
           <button onClick={handleScrollToTop}>Top</button>
           <button onClick={handleScrollToBottom}>Bottom</button>
         </div>
+
         {myId && <div className="remote-controller-inner">
           <div className="button-row">
             <Link to="/mypage/:userId">My Post</Link>
