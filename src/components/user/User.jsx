@@ -91,8 +91,7 @@ export default function User() {
                             className="mx-auto h-30 w-100 rounded-md cursor-pointer"
                             src={`http://localhost:4000/${user.profilePath}`}
                             alt="Your Company"
-                            onClick={() => setShowModal(true)}
-
+                            onClick={() => setShowModal(true)}></img>}
                     </div>
 
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
