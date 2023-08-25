@@ -130,7 +130,7 @@ const MainPostRail = () => {
                 </div>
                 <div className="-mx-5">
                   {post.imgPaths && <img
-                    src={`http://localhost:4000/${post.imgPaths}`}
+                    src={`http://192.168.0.168:4000/${post.imgPaths}`}
                     alt="Post"
                   />}
 
