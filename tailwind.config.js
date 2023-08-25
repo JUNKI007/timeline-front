@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['Cafe24SsurroundAir', 'sans'],
+        custom: ['SimKyungha', 'sans'],
       },
     },
   },
