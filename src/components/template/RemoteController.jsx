@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBool } from "../../feature/postingModalOpen";
 import './RemoteController.scss';
 import Clock from "../template/DigitalClock";
