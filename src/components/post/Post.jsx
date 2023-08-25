@@ -37,7 +37,7 @@ const PostModal = () => {
         async () => {
             try {
                 const subjects = await api(`/api/v1/subjects/with-member/${uId}`, 'GET')
-                console.log(subjects.data)
+
                 dispatch(setSubjects(subjects.data));
             } catch (error) {
                 console.log(error);
@@ -81,11 +81,6 @@ const PostModal = () => {
     }
 
     const writePost = async () => {
-
-        if (subjectNum === "") {
-            alert("주제를 선택해 주세요")
-        }
-
         const fd = new FormData();
         fd.append("file", imgFile);
         fd.append("title", title);
@@ -93,7 +88,7 @@ const PostModal = () => {
         fd.append("subjectNum", subjectNum);
         fd.append("setDate", setDate.toDateString());
 
-        console.log(fd)
+        console.log(title, content)
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
                 //포스트 올린거 응답오면 닫기
@@ -109,9 +104,9 @@ const PostModal = () => {
                 <div className="post-modal-wrapper">
                     <div className="post-modal-content">
                         <button className="close-button" onClick={closeModal}>X</button>
-                        <input type="text" placeholder="Title" name="title" className="input-field title-field" onChange={onChangeTitle}></input>
+                        <input type="text" placeholder="Title" name="title" className="input-field title-field"></input>
                         <div className="input-row">
-                            <select className="input-field input-wide" onChange={onchangeSubjectNum} defaultValue={mySubjects.length > 0 ? mySubjects[0].id : 0}>
+                            <select className="input-field input-wide" onChange={onchangeSubjectNum}>
                                 {mySubjects.map(subject => (
                                     <option key={subject.id} value={subject.id}>{subject.name}</option>
                                 ))}
@@ -119,8 +114,8 @@ const PostModal = () => {
                             <input type="file" onChange={handleChangeFile} className="input-field input-wide"></input>
                         </div>
                         {imgBase64 && <img src={imgBase64} alt="Image" className="centered-image" />}
-                        <input type="text" placeholder="Content" name="content" className="input-field" onChange={onChangeContent}></input>
-                        <input type="date" className="input-field" onChange={onChangeSetDateHandler}></input>
+                        <input type="text" placeholder="Content" name="content" className="input-field"></input>
+                        <input type="date" className="input-field"></input>
                         <button onClick={writePost} className="post-button">POST</button>
                     </div>
                 </div>

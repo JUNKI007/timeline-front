@@ -75,7 +75,7 @@ const Timeline = () => {
           media: {
             type: "IMAGE",
             source: {
-              url: `http://localhost:4000/${data.imgPaths}`
+              url: `http://192.168.0.226:4000/${data.imgPaths}`
             }
           }
         }

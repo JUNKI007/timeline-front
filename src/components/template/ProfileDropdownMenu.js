@@ -75,9 +75,11 @@ function ProfileDropdownMenu({ selectedUserId }) {
                                     </button>
                                     <button
                                         onClick={() => {
+                                            navigate(`/timeline/${selectedUserId}`);
+                                            closeModal();
                                         }}
                                         className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
-                                        신고하기
+                                        타임라인 보기
                                     </button>
                                 </div>
                             </div>
