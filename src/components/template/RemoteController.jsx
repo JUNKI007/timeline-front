@@ -6,6 +6,7 @@ import './RemoteController.scss';
 import Clock from "../template/DigitalClock";
 
 const RemoteController = () => {
+  const user = useSelector((state) => state.me);
   const dispatch = useDispatch();
 
   const handleScrollToTop = () => {
@@ -25,7 +26,7 @@ const RemoteController = () => {
   return (
 
     <div className="remote-controller">
-      <div className="remote-controller-inner">
+      <div className="remote-controller-inner"
         <div className="button-row">
           <button onClick={handleScrollToTop}>Top</button>
           <button onClick={handleScrollToBottom}>Bottom</button>
@@ -38,6 +39,7 @@ const RemoteController = () => {
           <Link to="/user/:userId">UserPage</Link>
           <button onClick={RemoteControllerWritePost}>Write Post</button>
         </div>
+
       </div>
       <Clock />
     </div>
