@@ -87,8 +87,6 @@ const PostModal = () => {
         fd.append("content", content);
         fd.append("subjectNum", subjectNum);
         fd.append("setDate", setDate.toDateString());
-
-        console.log(title, content)
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
                 //포스트 올린거 응답오면 닫기
