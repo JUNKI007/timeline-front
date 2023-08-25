@@ -125,7 +125,7 @@ const MainPostRail = () => {
                   />
                 </div>
                 <div className="my-3">
-                  <p>좋아요: {post.heartCount}</p>
+                  <p><span className="icon">❤️</span> 좋아요: {post.heartCount}</p>
                   <div className="button-group">
                     {post.heart.isit ? (
                       <button className="button like-button">
