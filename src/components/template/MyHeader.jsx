@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Popover } from '@headlessui/react'
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 
 
 function Tooltip({ label, children }) {
@@ -81,6 +81,8 @@ function HomeIcon(props) {
   );
 }
 const MyHeader = () => {
+
+  const user = useSelector((state) => state.me);
   return (
     <>
       <header className="bg-white">
@@ -115,7 +117,7 @@ const MyHeader = () => {
               <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2">
                 LOGOUT
               </Link>}
-            <Link to="/user" className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2 ml-2">
+            <Link to={`/user/${user.id}`} className="text-sm font-semibold leading-6 text-gray-900 border rounded-md p-2 ml-2">
               MyInfo
             </Link>
           </div>

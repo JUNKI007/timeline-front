@@ -93,7 +93,7 @@ export default function User() {
                             onClick={() => setShowModal(true)}></img> :
                             <img
                                 className="mx-auto h-30 w-100 rounded-md cursor-pointer"
-                                src={`http://192.168.0.226:4000/prfiles\\1692848794647.png`}
+                                src={`http://192.168.0.226:4000/profiles\\1692848794647.png`}
                                 alt="Your Company"
                                 onClick={() => setShowModal(true)}></img>}
                     </div>
