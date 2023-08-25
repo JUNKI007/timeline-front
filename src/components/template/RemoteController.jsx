@@ -8,6 +8,7 @@ import { setBool } from '../../feature/postingModalOpen';
 const RemoteController = () => {
   const dispatch = useDispatch();
   const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
+  const myId = useSelector(state => state.me.email);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -32,10 +33,12 @@ const RemoteController = () => {
       <div className="remote-controller-inner">
         <button onClick={() => handleScrollToTop()}>Top</button>
         <button onClick={() => handleScrollToBottom()}>Bottom</button>
-        <Link to="/mypage">My Post</Link>
-        <Link to="/timeline">Timeline</Link>
-        <Link to="/user">UserPage</Link>
-        <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
+        {myId && <div className="remote-controller-inner">
+          <Link to="/mypage">My Post</Link>
+          <Link to="/timeline">Timeline</Link>
+          <Link to="/user">UserPage</Link>
+          <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
+        </div>}
       </div>
     </div>
   );
