@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setBool } from "../../feature/postingModalOpen";
+import { setAddSubjectModalOpen, setPostinModalOpen } from "../../feature/modalOpen";
 import './RemoteController.scss';
 import Clock from "../template/DigitalClock";
 
 const RemoteController = () => {
   const user = useSelector((state) => state.me);
   const dispatch = useDispatch();
-  const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
   const myId = useSelector(state => state.me.email);
 
   const handleScrollToTop = () => {
@@ -22,7 +21,11 @@ const RemoteController = () => {
   };
 
   const RemoteControllerWritePost = () => {
-    dispatch(setBool(true));
+    dispatch(setPostinModalOpen(true));
+  };
+
+  const RemoteControllerAddSubject = () => {
+    dispatch(setAddSubjectModalOpen(true));
   };
 
   return (
@@ -42,6 +45,7 @@ const RemoteController = () => {
             <Link to="/user/:userId">UserPage</Link>
             <button onClick={RemoteControllerWritePost}>Write Post</button>
           </div>
+          <button className="button-row" onClick={RemoteControllerAddSubject}>Add Subject</button>
         </div>}
       </div>
       <Clock />

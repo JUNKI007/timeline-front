@@ -10,7 +10,7 @@ import './MainPostRail.scss';
 const MainPostRail = () => {
   const dispatch = useDispatch();
   const comments = useSelector(state => state?.comments?.commentsByPostId);
-  const isPostionOpen = useSelector(state => state.openPostingModal.isOpen);
+  const isPostionOpen = useSelector(state => state.openModal.postingModal_isOpen);
   const [posts, setPosts] = useState([]);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);

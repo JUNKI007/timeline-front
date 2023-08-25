@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { subjects: [] };
 
@@ -8,6 +8,10 @@ export const subjectSlice = createSlice({
     reducers: {
         setSubjects: (state, action) => {
             state.subjects = action.payload
+        },
+        addSubject: (state, action) => {
+            const newSubject = action.payload;
+            state.subjects = [...state.subjects, newSubject];
         }
     },
 });
