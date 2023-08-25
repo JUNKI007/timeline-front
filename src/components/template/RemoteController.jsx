@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBool } from "../../feature/postingModalOpen";
 import './RemoteController.scss';
 import Clock from "../template/DigitalClock";
@@ -32,7 +32,7 @@ const RemoteController = () => {
           <button onClick={handleScrollToBottom}>Bottom</button>
         </div>
         <div className="button-row">
-          <Link to="/mypage/:userId">My Post</Link>
+          <Link to={`/mypage/${user.id}`}>My Post</Link>
           <Link to="/timeline/:userId">TimeLine</Link>
         </div>
         <div className="button-row">
