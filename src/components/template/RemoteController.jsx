@@ -8,6 +8,8 @@ import Clock from "../template/DigitalClock";
 const RemoteController = () => {
   const user = useSelector((state) => state.me);
   const dispatch = useDispatch();
+  const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
+  const myId = useSelector(state => state.me.email);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -31,15 +33,17 @@ const RemoteController = () => {
           <button onClick={handleScrollToTop}>Top</button>
           <button onClick={handleScrollToBottom}>Bottom</button>
         </div>
-        <div className="button-row">
-          <Link to={`/mypage/${user.id}`}>My Post</Link>
-          <Link to="/timeline/:userId">TimeLine</Link>
-        </div>
-        <div className="button-row">
-          <Link to="/user/:userId">UserPage</Link>
-          <button onClick={RemoteControllerWritePost}>Write Post</button>
-        </div>
 
+        {myId && <div className="remote-controller-inner">
+          <div className="button-row">
+            <Link to="/mypage/:userId">My Post</Link>
+            <Link to="/timeline/:userId">TimeLine</Link>
+          </div>
+          <div className="button-row">
+            <Link to="/user/:userId">UserPage</Link>
+            <button onClick={RemoteControllerWritePost}>Write Post</button>
+          </div>
+        </div>}
       </div>
       <Clock />
     </div>

@@ -7,7 +7,6 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  font-family: 'Mochiy Pop P one', sans-serif;
 
   &-inner {
     display: flex;
@@ -18,14 +17,12 @@
       display: flex;
       gap: 1rem;
       flex-wrap: nowrap;
-
-      /* 추가된 부분 */
       display: flex;
       align-items: center;
 
       button,
       a {
-        padding: 5px 10px;
+        padding: 5px 5px;
         border: 1px solid #308efe;
         background-color: #308efe;
         color: #fff;

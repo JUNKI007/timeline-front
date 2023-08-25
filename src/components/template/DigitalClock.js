@@ -25,12 +25,11 @@ const Clock = () => {
 
     return (
         <div className="clock">
-            <img src="https://blog.kakaocdn.net/dn/dtWdAs/btsr60lsi1G/Fh3K0ek5mn7wUNQKurUYm0/img.png" alt="Clock" />
+            <img src="https://blog.kakaocdn.net/dn/ZUTmc/btssauNg8uo/8S045wr8s9YMM7iK8WZ5kk/img.png" alt="Clock" width="150" height="150" style={{ marginLeft: "1rem" }} />
             <h2>{hoursFormatted}:{minutes} <br /></h2>
             <h4>{ampm}</h4>
         </div>
     );
 };
-
 
 export default Clock;
