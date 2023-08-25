@@ -79,7 +79,6 @@ export default function User() {
         }
     useEffect(() => {
         getData();
-        getSubjects()
     }, [showModal])
 
     return (
@@ -87,11 +86,16 @@ export default function User() {
             <Fragment>
                 <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        {user.profilePath && <img
+                        {user.profilePath ? <img
                             className="mx-auto h-30 w-100 rounded-md cursor-pointer"
-                            src={`http://localhost:4000/${user.profilePath}`}
+                            src={`http://192.168.0.226:4000/${user.profilePath}`}
                             alt="Your Company"
-                            onClick={() => setShowModal(true)}></img>}
+                            onClick={() => setShowModal(true)}></img> :
+                            <img
+                                className="mx-auto h-30 w-100 rounded-md cursor-pointer"
+                                src={`http://192.168.0.226:4000/prfiles\\1692848794647.png`}
+                                alt="Your Company"
+                                onClick={() => setShowModal(true)}></img>}
                     </div>
 
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
