@@ -27,7 +27,11 @@ const PostModal = () => {
         if (mySubjects.length === 0)
             getSubjects();
 
-    }, [openPostingModal === true])
+        if (mySubjects.length > 0) {
+            setSubjectNum(mySubjects[0].id);
+        }
+
+    }, [mySubjects, openPostingModal === true])
 
     const getSubjects =
         async () => {
@@ -77,6 +81,11 @@ const PostModal = () => {
     }
 
     const writePost = async () => {
+
+        if (subjectNum === "") {
+            alert("주제를 선택해 주세요")
+        }
+
         const fd = new FormData();
         fd.append("file", imgFile);
         fd.append("title", title);
@@ -100,7 +109,7 @@ const PostModal = () => {
                         <button className="close-button" onClick={closeModal}>X</button>
                         <input type="text" placeholder="Title" name="title" className="input-field title-field" onChange={onChangeTitle}></input>
                         <div className="input-row">
-                            <select className="input-field input-wide" onChange={onchangeSubjectNum}>
+                            <select className="input-field input-wide" onChange={onchangeSubjectNum} defaultValue={mySubjects.length > 0 ? mySubjects[0].id : 0}>
                                 {mySubjects.map(subject => (
                                     <option key={subject.id} value={subject.id}>{subject.name}</option>
                                 ))}
