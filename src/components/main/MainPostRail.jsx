@@ -112,8 +112,8 @@ const MainPostRail = () => {
                 </div>
                 <div className="my-3">
                   <div className="title-box">
-                    <p className="title">{post.title}</p>
-                    <p> {post.subject.name} </p>
+                    <p className="title"> 제목 | {post.title}</p>
+                    <p> 주제 | {post.subject.name} </p>
                   </div>
 
                   <p>{post.content}</p>
@@ -125,7 +125,7 @@ const MainPostRail = () => {
                   />
                 </div>
                 <div className="my-3">
-                  <p>좋아요: {post.heartCount}</p>
+                  <p><span className="icon">❤️</span> 좋아요: {post.heartCount}</p>
                   <div className="button-group">
                     {post.heart.isit ? (
                       <button className="button like-button">
@@ -150,9 +150,23 @@ const MainPostRail = () => {
                     <div className="modal-content">
                       <div className="comments">
                         {comments[currentPostId]?.map(comment => (
-                          <p key={comment.id}>{comment.comment}</p>
+                          <div key={comment.id} className="comment-item">
+                            <div className="comment-author">
+                              <img
+                                src={`http://192.168.0.226:4000/${comment.member.profilePath}`}
+                                alt={comment.member.nickName}
+                                className="comment-author-image"
+                              />
+                              <p className="comment-author-name">{comment.member.nickName}</p>
+                            </div>
+                            <div className="comment-content">
+                              <p>{comment.comment}</p>
+                              <p className="comment-date">{formatDate(comment.createAt)}</p>
+                            </div>
+                          </div>
                         ))}
                       </div>
+
                       <div className="comment-input">
                         <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
                         <button onClick={handleAddComment}>댓글 작성</button>

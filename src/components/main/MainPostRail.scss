@@ -66,18 +66,6 @@
           font-size: 1rem;
           transition: background-color 0.3s;
           margin: 0 1%;
-        }
-
-        .like-button {
-          background-color: #1877f2;
-          color: white;
-
-          &:hover {
-            background-color: #165dbb;
-          }
-        }
-
-        .comment-button {
           background-color: #f0f2f5;
           color: #1c1e21;
 
@@ -97,24 +85,19 @@
       }
 
       .title-box {
-        background-color: #C5D9FF;
-        /* 새로운 배경색으로 변경 */
+        background-color: #EBF5FF;
         padding: 0.2rem;
         border-radius: 0.2rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         margin-bottom: 0.3rem;
-        /* 조정 가능한 간격 */
       }
 
       .title {
         color: black;
-        /* 제목 텍스트 색상 */
         font-weight: bold;
-        /* 제목 텍스트 굵기 */
       }
-
 
       .subject-box {
         margin-bottom: 0.5rem;
@@ -144,7 +127,6 @@
     }
   }
 
-
   /* 모달 스타일 */
   .modal-overlay {
     position: fixed;
@@ -167,6 +149,7 @@
     max-width: 500px;
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #dfe3e8;
   }
 
   .modal-close-btn {
@@ -177,5 +160,95 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
+    color: #1877f2;
+  }
+
+  .comment-input {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dfe3e8;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    padding: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #165dbb;
+    }
+  }
+}
+
+.comments {
+  margin-top: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+  border-top: 1px solid #dfe3e8;
+  padding-top: 0.5rem;
+
+  p {
+    margin: 0;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #dfe3e8;
+
+    &:nth-child(10n) {
+      border-bottom: none;
+    }
+  }
+}
+
+.comment-item {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: start;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .comment-author {
+    margin-right: 1rem;
+
+    img.comment-author-image {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    p.comment-author-name {
+      margin-top: 0.2rem;
+      font-weight: bold;
+    }
+  }
+
+  .comment-content {
+    flex-grow: 1;
+
+    p {
+      margin: 0;
+    }
+
+    .comment-date {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: #888;
+    }
   }
 }
