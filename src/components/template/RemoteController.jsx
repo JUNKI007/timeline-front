@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBool } from '../../feature/postingModalOpen';
 
 const RemoteController = () => {
+  const user = useSelector((state) => state.me);
   const dispatch = useDispatch();
   const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
@@ -32,9 +33,9 @@ const RemoteController = () => {
       <div className="remote-controller-inner">
         <button onClick={() => handleScrollToTop()}>Top</button>
         <button onClick={() => handleScrollToBottom()}>Bottom</button>
-        <Link to="/mypage">My Post</Link>
+        <Link to={`/mypage/${user.id}`}>My Post</Link>
         <Link to="/timeline">Timeline</Link>
-        <Link to="/user">UserPage</Link>
+        <Link to={`/user/${user.id}`}>UserPage</Link>
         <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
       </div>
     </div>
