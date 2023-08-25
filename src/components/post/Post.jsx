@@ -18,7 +18,7 @@ const PostModal = () => {
     const dispatch = useDispatch();
     const mySubjects = useSelector(state => state.subjects.subjects);
     const openPostingModal = useSelector(state => state.openModal.postingModal_isOpen);
-
+    const uId = useSelector(state => state.me.id)
     const closeModal = () => {
         dispatch(setPostinModalOpen(!openPostingModal));
     };
@@ -32,7 +32,7 @@ const PostModal = () => {
     const getSubjects =
         async () => {
             try {
-                const subjects = await api('/api/v1/subjects/with-member', 'GET')
+                const subjects = await api(`/api/v1/subjects/with-member/${uId}`, 'GET')
                 console.log(subjects.data)
                 dispatch(setSubjects(subjects.data));
             } catch (error) {
