@@ -7,7 +7,6 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-
   font-family: 'Mochiy Pop P one', sans-serif;
 
   &-inner {
@@ -15,20 +14,32 @@
     flex-direction: column;
     gap: 10px;
 
-    button,
-    a {
-      padding: 5px 10px;
-      border: 1px solid #308efe;
-      background-color: #308efe;
-      color: #fff;
-      border-radius: 5px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: nowrap;
 
-      &:hover {
-        background-color: #2566d4;
+      /* 추가된 부분 */
+      display: flex;
+      align-items: center;
+
+      button,
+      a {
+        padding: 5px 10px;
+        border: 1px solid #308efe;
+        background-color: #308efe;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        min-width: 100px;
+
+        &:hover {
+          background-color: #2566d4;
+        }
       }
     }
   }
