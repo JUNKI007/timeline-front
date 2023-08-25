@@ -65,7 +65,7 @@ export default function SignUp() {
                                 </label>
 
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="email"
                                     name="email"
@@ -84,7 +84,7 @@ export default function SignUp() {
                                     Password
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="password"
                                     name="password"
@@ -103,7 +103,7 @@ export default function SignUp() {
                                     Name
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="name"
                                     name="name"
@@ -122,7 +122,7 @@ export default function SignUp() {
                                     NickName
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="nickName"
                                     name="nickName"

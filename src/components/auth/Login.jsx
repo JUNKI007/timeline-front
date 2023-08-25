@@ -119,6 +119,10 @@ export default function Login() {
                             </button>
                         </div>
                     </form>
+                    <p class="mt-10 text-center text-sm text-gray-500">
+                        Not a member?
+                        <a href="/signup" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">    Join as a Member</a>
+                    </p>
                 </div>
             </div>
         </>
