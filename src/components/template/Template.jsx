@@ -10,7 +10,7 @@ const Template = () => {
     const openPostingModal = useSelector(state => state.openModal.postingModal_isOpen);
     const openAddSubjectModal = useSelector(state => state.openModal.addSubjectModal_isOpen);
 
-    return <div>
+    return <div >
         {/*  마이헤더 */}
         <MyHeader></MyHeader>
         <MainLeftRail></MainLeftRail>

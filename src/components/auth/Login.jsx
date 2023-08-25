@@ -30,6 +30,7 @@ export default function Login() {
         try {
             const data = await apiNoToken('/api/v1/members/login', 'POST', user)
             localStorage.setItem('token', data.data)
+
             dispatch(setState(data))
             nav('/')
         } catch (error) {
@@ -58,6 +59,7 @@ export default function Login() {
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 {/* 로고 */}
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+
                     <Link to='/'>
                         <img
                             className="mx-auto h-10 w-auto"

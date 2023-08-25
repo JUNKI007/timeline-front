@@ -15,7 +15,9 @@ export default function MyPage() {
     const [selectedPost, setSelectedPost] = useState(null);
     const [search, setSearch] = useState("");
     const { userId } = useParams();
+
     const user = useSelector((state) => state.me);
+
 
     const onBlurHandler = (e) => {
         setSearch(e.target.value)
