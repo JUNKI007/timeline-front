@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { api } from '../../network/api';
 import { BiWorld } from 'react-icons/bi';
 import { updateLikeThunk } from '../../feature/likeSlice';
@@ -11,7 +10,7 @@ import './MainPostRail.scss';
 const MainPostRail = () => {
   const dispatch = useDispatch();
   const comments = useSelector(state => state?.comments?.commentsByPostId);
-  const isPostionOpen = useSelector(state => state.openPostingModal.isOpen);
+  const isPostionOpen = useSelector(state => state.openModal.postingModal_isOpen);
   const [posts, setPosts] = useState([]);
   const [isCommentModalOpen, setCommentModalOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -122,8 +121,11 @@ const MainPostRail = () => {
                   </div>
                 </div>
                 <div className="my-3">
-                  <p> 제목 : {post.title} </p>
-                  <p> 주제 : {post.subject.name} </p>
+                  <div className="title-box">
+                    <p className="title"> 제목 | {post.title}</p>
+                    <p> 주제 | {post.subject.name} </p>
+                  </div>
+
                   <p>{post.content}</p>
                 </div>
                 <div className="-mx-5">
@@ -134,7 +136,7 @@ const MainPostRail = () => {
 
                 </div>
                 <div className="my-3">
-                  <p>좋아요: {post.heartCount}</p>
+                  <p><span className="icon">❤️</span> 좋아요: {post.heartCount}</p>
                   <div className="button-group">
                     {(post.heart | post.isLiked) ? (
                       <button className="button dislike-button"
@@ -149,14 +151,43 @@ const MainPostRail = () => {
                         <span className="icon">👍</span> 좋아요
                       </button>
                     )}
-                    <button
-                      className="button comment-button"
-                      onClick={() => handleOpenCommentModal(post.id)}
-                    >
+                    <button className="button comment-button" onClick={() => handleOpenCommentModal(post.id)}>
                       <span className="icon">💬</span> 댓글 달기
                     </button>
                   </div>
                 </div>
+
+                {isCommentModalOpen && (
+                  <div className="modal-overlay">
+                    <div className="modal-content">
+                      <div className="comments">
+                        {comments[currentPostId]?.map(comment => (
+                          <div key={comment.id} className="comment-item">
+                            <div className="comment-author">
+                              <img
+                                src={`http://192.168.0.226:4000/${comment.member.profilePath}`}
+                                alt={comment.member.nickName}
+                                className="comment-author-image"
+                              />
+                              <p className="comment-author-name">{comment.member.nickName}</p>
+                            </div>
+                            <div className="comment-content">
+                              <p>{comment.comment}</p>
+                              <p className="comment-date">{formatDate(comment.createAt)}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="comment-input">
+                        <input value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+                        <button onClick={handleAddComment}>댓글 작성</button>
+                      </div>
+                      <button className="modal-close-btn" onClick={() => setCommentModalOpen(false)}>닫기</button>
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           ))}

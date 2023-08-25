@@ -20,9 +20,6 @@ export default function SignUp() {
         setUser({ ...user, [name]: value })
     }
 
-    //회원가입시 이동
-    const nav = useNavigate();
-
     //회원가입
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -37,9 +34,13 @@ export default function SignUp() {
         }
     }
 
+    //회원가입시 이동
+    const nav = useNavigate();
+
     return (
         <>
             <ToastContainer position="top-center" />
+
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -64,7 +65,7 @@ export default function SignUp() {
                                 </label>
 
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="email"
                                     name="email"
@@ -83,7 +84,7 @@ export default function SignUp() {
                                     Password
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="password"
                                     name="password"
@@ -102,7 +103,7 @@ export default function SignUp() {
                                     Name
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="name"
                                     name="name"
@@ -121,7 +122,7 @@ export default function SignUp() {
                                     NickName
                                 </label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-5">
                                 <input
                                     id="nickName"
                                     name="nickName"

@@ -1,0 +1,27 @@
+.clock {
+  margin-top: 1.3rem;
+  font-size: 1.8rem;
+  color: #888;
+  background-color: #fff;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.clock h2 {
+  position: relative;
+  top: -3.3rem;
+  left: 0.3rem;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.clock h4 {
+  position: relative;
+  font-size: 0.5rem;
+  top: -4.8rem;
+  left: -1.8rem;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
