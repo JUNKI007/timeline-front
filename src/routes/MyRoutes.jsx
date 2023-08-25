@@ -17,7 +17,7 @@ const MyRoutes = () => {
         <Routes>
             <Route path="/login" element={<Login></Login>} />
             <Route path="/signup" element={<SignUp></SignUp>} />
-            {user.token === '' ? (
+            {!localStorage.getItem('token') ? (
                 <Route path="*" element={<Navigate to="/login" />} />
             ) : (
                 <Route element={<Template />}>
