@@ -18,7 +18,7 @@ const PostModal = () => {
     const dispatch = useDispatch();
     const mySubjects = useSelector(state => state.subjects.subjects);
     const openPostingModal = useSelector(state => state.openModal.postingModal_isOpen);
-
+    const uId = useSelector(state => state.me.id)
     const closeModal = () => {
         dispatch(setPostinModalOpen(!openPostingModal));
     };
@@ -32,7 +32,7 @@ const PostModal = () => {
     const getSubjects =
         async () => {
             try {
-                const subjects = await api('/api/v1/subjects/with-member', 'GET')
+                const subjects = await api(`/api/v1/subjects/with-member/${uId}`, 'GET')
                 console.log(subjects.data)
                 dispatch(setSubjects(subjects.data));
             } catch (error) {
@@ -81,9 +81,8 @@ const PostModal = () => {
         fd.append("file", imgFile);
         fd.append("title", title);
         fd.append("content", content);
-        fd.append("subjectNum", subjectNum ? 0 : subjectNum);
+        fd.append("subjectNum", subjectNum);
         fd.append("setDate", setDate.toDateString());
-        //console.log("subjectnum", fd.get("subjectNum"))
         await api('/api/v1/posts', "POST", fd).then((response) => {
             if (response.data) {
                 //포스트 올린거 응답오면 닫기
