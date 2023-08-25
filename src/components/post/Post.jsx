@@ -104,7 +104,7 @@ const PostModal = () => {
                 <div className="post-modal-wrapper">
                     <div className="post-modal-content">
                         <button className="close-button" onClick={closeModal}>X</button>
-                        <input type="text" placeholder="Title" name="title" className="input-field title-field"></input>
+                        <input type="text" placeholder="Title" name="title" className="input-field title-field" onChange={onChangeTitle}></input>
                         <div className="input-row">
                             <select className="input-field input-wide" onChange={onchangeSubjectNum}>
                                 {mySubjects.map(subject => (
@@ -114,8 +114,8 @@ const PostModal = () => {
                             <input type="file" onChange={handleChangeFile} className="input-field input-wide"></input>
                         </div>
                         {imgBase64 && <img src={imgBase64} alt="Image" className="centered-image" />}
-                        <input type="text" placeholder="Content" name="content" className="input-field"></input>
-                        <input type="date" className="input-field"></input>
+                        <input type="text" placeholder="Content" name="content" className="input-field" onChange={onChangeContent}></input>
+                        <input type="date" className="input-field" onChange={onChangeSetDateHandler}></input>
                         <button onClick={writePost} className="post-button">POST</button>
                     </div>
                 </div>
