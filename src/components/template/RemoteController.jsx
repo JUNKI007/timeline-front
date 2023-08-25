@@ -26,7 +26,7 @@ const RemoteController = () => {
   return (
 
     <div className="remote-controller">
-      <div className="remote-controller-inner"
+      <div className="remote-controller-inner">
         <div className="button-row">
           <button onClick={handleScrollToTop}>Top</button>
           <button onClick={handleScrollToBottom}>Bottom</button>
