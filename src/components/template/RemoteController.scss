@@ -1,0 +1,43 @@
+.remote-controller {
+  position: fixed;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: nowrap;
+      display: flex;
+      align-items: center;
+
+      button,
+      a {
+        padding: 5px 5px;
+        border: 1px solid #308efe;
+        background-color: #308efe;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        min-width: 100px;
+
+        &:hover {
+          background-color: #2566d4;
+        }
+      }
+    }
+  }
+}

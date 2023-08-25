@@ -1,8 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
-
+import { configureStore } from '@reduxjs/toolkit';
+import likesReducer from '../feature/likeSlice';
+import commentsReducer from '../feature/commentSlice';
+import subjectSlice from '../feature/subjectSlice';
+import openModalReducer from '../feature/modalOpen';
+import meSlice from '../feature/meSlice';
 
 export default configureStore({
     reducer: {
-        // 각자의 feature/ ~~ 에다가 스토어에 저장해둘 리듀서 파일 넣어두기
+        likes: likesReducer,
+        comments: commentsReducer,
+        subjects: subjectSlice,
+        openModal: openModalReducer,
+        me: meSlice,
     }
-})
+});
