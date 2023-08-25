@@ -19,9 +19,6 @@ export default function MyPage() {
     const user = useSelector((state) => state.me);
 
 
-    const onBlurHandler = (e) => {
-        setSearch(e.target.value)
-    }
 
     const getData = async () => {
         const apiUrl = `/api/v1/posts/member/${userId}`
@@ -42,11 +39,6 @@ export default function MyPage() {
             <div className="main-post-rail w-screen sm:w-full">
                 <div className="w-screen sm:w-full">
                     <div className="my-6 max-w-[25rem] sm:max-w-[45rem] mx-auto">
-                        <input
-                            style={{ border: "1px solid black", color: "black", borderRadius: "5px" }}
-                            type="text"
-                            onBlur={onBlurHandler}
-                        />
                         <AwesomeSlider animation="fallAnimation" cssModule={[CoreStyles, AnimationStyles]}>
                             {myPosts.map(myPost => (
                                 <div className="myPost"

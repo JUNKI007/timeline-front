@@ -130,7 +130,7 @@ const MainPostRail = () => {
                 </div>
                 <div className="-mx-5">
                   {post.imgPaths && <img
-                    src={`http://192.168.0.168:4000/${post.imgPaths}`}
+                    src={`http://192.168.0.226:4000/${post.imgPaths}`}
                     alt="Post"
                   />}
 
@@ -139,7 +139,8 @@ const MainPostRail = () => {
                   <p><span className="icon">❤️</span> 좋아요: {post.heartCount}</p>
                   <div className="button-group">
                     {(post.heart | post.isLiked) ? (
-                      <button className="button dislike-button"
+                      <button className="button like-button"
+                        style={{ color: '#0f2654' }}
                         onClick={() => handleLike(post.id)}>
                         <span className="icon">👌</span> 좋아요
                       </button>

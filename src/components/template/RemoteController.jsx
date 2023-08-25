@@ -42,11 +42,11 @@ const RemoteController = () => {
 
         {myId && <div className="remote-controller-inner">
           <div className="button-row">
-            <Link to="/mypage/:userId">My Post</Link>
-            <Link to="/timeline/:userId">TimeLine</Link>
+            <Link to={`/mypage/${user.id}`}>My Post</Link>
+            <Link to={`/timeline/${user.id}`}>TimeLine</Link>
           </div>
           <div className="button-row">
-            <Link to="/user/:userId">UserPage</Link>
+            <Link to={`/user/${user.id}`}>UserPage</Link>
             <button onClick={RemoteControllerWritePost}>Write Post</button>
           </div>
           <div className="button-row">
