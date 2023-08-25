@@ -18,7 +18,6 @@ export default function Login() {
         try {
             const data = await apiNoToken('/api/v1/members/login', 'POST', user)
             localStorage.setItem('token', data.data)
-            console.log(localStorage.getItem('token'))
             nav('/')
         } catch (error) {
             console.log(error);;

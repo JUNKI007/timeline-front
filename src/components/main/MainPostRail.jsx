@@ -27,7 +27,7 @@ const MainPostRail = () => {
     try {
       const response = await api(apiUrl, 'GET');
 
-     const data = response.data.map((post)=>{return {...post,isLiked:post.heart }})
+      const data = response.data.map((post) => { return { ...post, isLiked: post.heart } })
       setPosts(data);
 
       console.log(response.data)
@@ -59,7 +59,7 @@ const MainPostRail = () => {
       post.id === postId
         ? {
           ...post,
-          heartCount: post.isLiked ? post.heartCount -1 : post.heartCount +1,
+          heartCount: post.isLiked ? post.heartCount - 1 : post.heartCount + 1,
           isLiked: !post.isLiked,
         }
         : post
@@ -98,11 +98,11 @@ const MainPostRail = () => {
                   >
                     <div className="flex items-center position-relative">
                       {post.member.profilePath && <img
-                        src={`http://localhost:4000/${post.member.profilePath}`}
+                        src={`http://192.168.0.226:4000/${post.member.profilePath}`}
                         alt="Profile"
                         className="mr-2"
                       />}
-                    
+
                       <p
                         className="font-bold profile-nickname"
                         onClick={() => handleProfileMenu(post.member.id)}
@@ -131,12 +131,12 @@ const MainPostRail = () => {
                     src={`http://localhost:4000/${post.imgPaths}`}
                     alt="Post"
                   />}
-                  
+
                 </div>
                 <div className="my-3">
                   <p>좋아요: {post.heartCount}</p>
                   <div className="button-group">
-                    {(post.heart|post.isLiked) ? (
+                    {(post.heart | post.isLiked) ? (
                       <button className="button dislike-button"
                         onClick={() => handleLike(post.id)}>
                         <span className="icon">👌</span> 좋아요
