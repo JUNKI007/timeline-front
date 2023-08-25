@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setBool } from "../../feature/postingModalOpen";
 import './RemoteController.scss';
-import Post from '../post/Post';
-import { useDispatch, useSelector } from 'react-redux';
-import { setBool } from '../../feature/postingModalOpen';
+import Clock from "../template/DigitalClock";
 
 const RemoteController = () => {
   const dispatch = useDispatch();
-  const openPostingModal = useSelector(state => state.openPostingModal.isOpen);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -20,24 +19,29 @@ const RemoteController = () => {
   };
 
   const RemoteControllerWritePost = () => {
-    dispatch(setBool(!openPostingModal));
+    dispatch(setBool(true));
   };
 
-  useEffect(() => {
-    console.log("openpostingmodal", openPostingModal);
-  }, [openPostingModal]);
-
   return (
+
     <div className="remote-controller">
       <div className="remote-controller-inner">
-        <button onClick={() => handleScrollToTop()}>Top</button>
-        <button onClick={() => handleScrollToBottom()}>Bottom</button>
-        <Link to="/mypage">My Post</Link>
-        <Link to="/timeline">Timeline</Link>
-        <Link to="/user">UserPage</Link>
-        <button onClick={() => RemoteControllerWritePost()}>Write Post</button>
+        <div className="button-row">
+          <button onClick={handleScrollToTop}>Top</button>
+          <button onClick={handleScrollToBottom}>Bottom</button>
+        </div>
+        <div className="button-row">
+          <Link to="/mypage/:userId">My Post</Link>
+          <Link to="/timeline/:userId">TimeLine</Link>
+        </div>
+        <div className="button-row">
+          <Link to="/user/:userId">UserPage</Link>
+          <button onClick={RemoteControllerWritePost}>Write Post</button>
+        </div>
       </div>
+      <Clock />
     </div>
+
   );
 };
 
