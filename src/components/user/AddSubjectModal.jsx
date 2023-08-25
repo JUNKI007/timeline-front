@@ -84,12 +84,19 @@ const AddSubjectModal = () => {
             >
                 <button onClick={closeModal}>X</button>
                 <p>나의 주제</p>
-                <table>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <tbody>
                         {mySubjects.map(subject => (
                             <tr key={subject.id}>
-                                <td>{subject.id}</td>
-                                <td>{subject.name}</td>
+                                <td style={{
+                                    padding: '10px',
+                                    border: '1px solid #e0e0e0',
+                                    backgroundColor: '#f5f5f5',
+                                    textAlign: 'left',
+                                    fontWeight: 'bold',
+                                    borderTopLeftRadius: '10px',
+                                    borderBottomLeftRadius: '10px',
+                                }}>{subject.name}</td>
                             </tr>
                         ))}
                     </tbody>

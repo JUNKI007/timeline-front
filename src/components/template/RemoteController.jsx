@@ -49,7 +49,9 @@ const RemoteController = () => {
             <Link to="/user/:userId">UserPage</Link>
             <button onClick={RemoteControllerWritePost}>Write Post</button>
           </div>
-          <button className="button-row" onClick={RemoteControllerAddSubject}>Add Subject</button>
+          <div className="button-row">
+            <button style={{ textAlign: 'center' }} className="button-row" onClick={RemoteControllerAddSubject}> Subject</button>
+          </div>
         </div>}
 
       </div>

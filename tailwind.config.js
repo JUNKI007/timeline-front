@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['SimKyungha', 'sans'],
+        custom: ['GmarketSansMedium', 'sans'],
       },
     },
   },
