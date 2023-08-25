@@ -3,9 +3,7 @@ import { apiNoToken } from '../../network/api'
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 export default function SignUp() {
-
     //회원가입 정보
     const [user, setUser] = useState({
         name: "",
@@ -13,13 +11,11 @@ export default function SignUp() {
         nickName: "",
         password: ""
     });
-
     //회원가입 정보 SET
     const onChangeHandler = (e) => {
         const { value, name } = e.target
         setUser({ ...user, [name]: value })
     }
-
     //회원가입
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -33,14 +29,11 @@ export default function SignUp() {
             toast.error(error.response.data.message);
         }
     }
-
     //회원가입시 이동
     const nav = useNavigate();
-
     return (
         <>
             <ToastContainer position="top-center" />
-
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -53,17 +46,14 @@ export default function SignUp() {
                         Sign up to your account
                     </h2>
                 </div>
-
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={onSubmitHandler}>
-
                         {/*이메일*/}
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                     Email address
                                 </label>
-
                             </div>
                             <div className="mt-5">
                                 <input
@@ -72,11 +62,10 @@ export default function SignUp() {
                                     type="email"
                                     onChange={onChangeHandler}
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 tracking-wider"
                                 />
                             </div>
                         </div>
-
                         {/*비밀번호*/}
                         <div>
                             <div className="flex items-center justify-between">
@@ -91,11 +80,10 @@ export default function SignUp() {
                                     type="password"
                                     onChange={onChangeHandler}
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 tracking-wider"
                                 />
                             </div>
                         </div>
-
                         {/* 이름 */}
                         <div>
                             <div className="flex items-center justify-between">
@@ -110,11 +98,10 @@ export default function SignUp() {
                                     type="name"
                                     onChange={onChangeHandler}
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 tracking-wider"
                                 />
                             </div>
                         </div>
-
                         {/*별명*/}
                         <div>
                             <div className="flex items-center justify-between">
@@ -129,11 +116,10 @@ export default function SignUp() {
                                     type="nickName"
                                     onChange={onChangeHandler}
                                     required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 tracking-wider"
                                 />
                             </div>
                         </div>
-
                         <div>
                             <button
                                 type="submit"
